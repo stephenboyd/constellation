@@ -1,14 +1,30 @@
 <head>
   <title>constellation</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 </head>
 
 <body>
-  <h1>Welcome to Meteor!</h1>
+  <div class="container">
+    <header>
+      <h1>constellation</h1>
+    </header>
+  </div>
+  
+  <div class="container">
+    <p>
+      {{> loginButtons}}
+    </p>
+  </div>
 
-  {{> hello}}
+  <div class="container">
+    <ul>
+      {{#each posts}}
+        {{> post}}
+      {{/each}}
+    </ul>
+  </div>
 </body>
 
-<template name="hello">
-  <button>Click Me</button>
-  <p>You've pressed the button {{counter}} times.</p>
+<template name="post">
+    <li>{{text}}</li>
 </template>
