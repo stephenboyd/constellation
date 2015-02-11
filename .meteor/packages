@@ -9,3 +9,5 @@ accounts-password
 accounts-ui
 twbs:bootstrap
 momentjs:moment
+jquery
+isotope:isotope

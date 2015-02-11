@@ -13,34 +13,34 @@
             <input type="text" class="form-control" name="text" placeholder="Type your new post here"/>
           </form>
       {{/if}}
+      <br>
     </header>
   </div>
   
-  <div class="container">
-    <ul>
+  <div id="container" class="masonry js-isotope"
+    data-isotope-options='{ "itemSelector": ".item", "masonry": { "gutter": 2, "isFitWidth": true } }'>
+    <div class="container">
       {{#each posts}}
         {{> post}}
       {{/each}}
-    </ul>
+    </div>
   </div>
 </body>
 
 <template name="post">
-  <div class="post">
-    <li>
-      <span class="post header">
-        <strong>{{username}}</strong>
-        {{prettifyDate createdAt}}
-        {{#if isOwner}}
-          <span type="button" class="delete">
-            <span class="glyphicon glyphicon-remove"></span>
-          </span>
-        {{/if}}
-      </span>
-      <br>
-      <span class="text">{{text}}</span>
-      <br>
-      <br>
-    </li>
+  <div class="item">
+    <span class="post header">
+      <strong>{{username}}</strong>
+      {{prettifyDate createdAt}}
+      {{#if isOwner}}
+        <span type="button" class="delete">
+          <span class="glyphicon glyphicon-remove"></span>
+        </span>
+      {{/if}}
+    </span>
+    <br>
+    <span class="text">{{text}}</span>
+    <br>
+    <br>
   </div>
 </template>
