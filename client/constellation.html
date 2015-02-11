@@ -1,0 +1,44 @@
+<head>
+  <title>constellation</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+</head>
+
+<body>
+  <div class="container">
+    <header>
+      <h1>constellation</h1>
+      {{> loginButtons}}
+      {{#if currentUser}}
+          <form class="new-post">
+            <input type="text" class="form-control" name="text" placeholder="Type your new post here"/>
+          </form>
+      {{/if}}
+    </header>
+  </div>
+  
+  <div class="container">
+    <ul>
+      {{#each posts}}
+        {{> post}}
+      {{/each}}
+    </ul>
+  </div>
+</body>
+
+<template name="post">
+  <div class="post">
+    <li>
+      <span class="post header">
+        <strong>{{username}}</strong>
+        {{prettifyDate createdAt}}
+        <span type="button" class="delete">
+          <span class="glyphicon glyphicon-remove"></span>
+        </span>
+      </span>
+      <br>
+      <span class="text">{{text}}</span>
+      <br>
+      <br>
+    </li>
+  </div>
+</template>
