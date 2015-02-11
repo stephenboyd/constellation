@@ -10,12 +10,7 @@ if (Meteor.isClient) {
   Template.body.events({
     "submit .new-post": function (event) {
       var text = event.target.text.value;
-      Posts.insert({
-        text: text,
-        createdAt: new Date(),
-        owner: Meteor.userId(),
-        username: Meteor.user().username
-      });
+      Meteor.call("addPost", text);
       event.target.text.value = "";
       return false;
     }
@@ -27,7 +22,7 @@ if (Meteor.isClient) {
 
   Template.post.events({
     "click .delete": function () {
-      Posts.remove(this._id);
+      Meteor.call("deletePost", this._id);
     }
   });
 
