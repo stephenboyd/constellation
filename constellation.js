@@ -1,6 +1,7 @@
 Posts = new Mongo.Collection("posts");
 
 if (Meteor.isClient) {
+  Meteor.subscribe("posts");
   Template.body.helpers({
     posts: function () {
       return Posts.find({}, {sort: {createdAt: -1}});
@@ -26,13 +27,19 @@ if (Meteor.isClient) {
     }
   });
 
-  Handlebars.registerHelper("prettifyDate", function(timestamp) {
+  Template.post.helpers({
+    isOwner: function () {
+      return this.owner === Meteor.userId();
+    }
+  });
+
+  UI.registerHelper("prettifyDate", function(timestamp) {
     return moment(new Date(timestamp)).fromNow();
   });
 }
 
 if (Meteor.isServer) {
-  Meteor.startup(function () {
-    // code to run on server at startup
+  Meteor.publish("posts", function () {
+    return Posts.find();
   });
 }

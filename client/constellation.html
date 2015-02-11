@@ -31,9 +31,11 @@
       <span class="post header">
         <strong>{{username}}</strong>
         {{prettifyDate createdAt}}
-        <span type="button" class="delete">
-          <span class="glyphicon glyphicon-remove"></span>
-        </span>
+        {{#if isOwner}}
+          <span type="button" class="delete">
+            <span class="glyphicon glyphicon-remove"></span>
+          </span>
+        {{/if}}
       </span>
       <br>
       <span class="text">{{text}}</span>

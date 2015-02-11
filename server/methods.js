@@ -13,7 +13,12 @@ Meteor.methods({
   },
 
   deletePost: function (postId) {
-    Posts.remove(postId);
+    var post = Posts.findOne(postId);
+    if (post.owner !== Meteor.userId()) {
+      throw new Meteor.Error("not-authorized");
+    } else {
+      Posts.remove(postId);
+    }
   },
 
 });
