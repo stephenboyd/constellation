@@ -1,23 +1,82 @@
 body {
-  padding-top: 40px;
+  padding-top: 20px;
   padding-left: 5%;
   padding-right: 5%;
+  background: black;
 }
+@media only screen and (min-device-width: 480px){
+  body {
+    background-image: url("space.jpg");
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+  }
+}
+
 
 header {
   padding-left: 40px;
-  padding-bottom: 10px;
+  padding-right: 40px;
+  color: white;
+  background: rgba(0, 0, 0, 0.6);
+  display: inline-block;
+  margin-bottom: 20px;
 }
 
 .main {
 }
 
+.col-md-3 {
+  min-width: 32%;
+}
+
+#new-post-area {
+  background: white;
+  margin-bottom: 12px;
+  margin-left: 6px;
+  margin-right: 6px;
+  padding-top: 5px;
+  min-height: 200px;
+  border: 1px solid #FF7272;
+}
+
+.form-control {
+  border: 0px;
+  border-radius: 0;
+}
+
+.btn {
+  border-radius: 0;
+  background: #FF7272;
+  border: none;
+}
+
+.btn:active {
+  background: white;
+  color: black;
+}
 
 .item {
-  background: #EEE;
-  margin-bottom: 2px;
-  margin-left: 1px;
-  margin-right: 1px;
-  float: left;
+  background: white;
+  margin-bottom: 12px;
+  margin-left: 6px;
+  margin-right: 6px;
+  padding-top: 5px;
+  min-height: 200px;
+}
+
+.post-header {
+  color: #FF7272;
+}
+
+.date {
+}
+
+.delete {
+  float: right;
+}
+
+.delete:hover {
+  color: black
 }
 

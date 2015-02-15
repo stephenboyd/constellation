@@ -8,16 +8,21 @@
     <div class="container-fluid">
       <h1>constellation</h1>
       {{> loginButtons}}
-      {{#if currentUser}}
-          <form class="new-post">
-            <input type="text" class="form-control" name="text" placeholder="Type your new post here"/>
-          </form>
-      {{/if}}
-      <br>
     </div>
   </header>
   
-  <div id="container main">
+  <div id="container-fluid main">
+    {{#if currentUser}}
+      <div id="new-post-area" class="col-md-3 col-sm-5 col-xs-11">
+          <form class="new-post">
+            <textarea input type="text" rows="7" class="form-control" name="text" placeholder="Type your new post here"></textarea>
+            <button type="submit" class="btn btn-primary">
+              <span class="glyphicon glyphicon-plus"></span>
+              Submit
+            </button>
+          </form>
+      </div>
+    {{/if}}
     <div id="post-area" class=" masonry js-masonry isotope js-isotope"
       data-isotope-options='{ "itemSelector": ".masonry-brick", "masonry": { "isFitWidth": true } }'>
         {{#each posts}}
@@ -27,11 +32,12 @@
   </div>
 </body>
 
+
 <template name="post">
   <div class="item masonry-brick col-md-3 col-sm-5 col-xs-11">
     <span class="post-header">
       <strong>{{username}}</strong>
-      {{prettifyDate createdAt}}
+      <span class="date">{{prettifyDate createdAt}}</span>
       {{#if isOwner}}
         <span type="button" class="delete">
           <span class="glyphicon glyphicon-remove"></span>

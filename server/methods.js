@@ -4,6 +4,9 @@ Meteor.methods({
     if (! Meteor.userId()) {
       throw new Meteor.Error("not-authorized");
     }
+    if (text === ""){
+      throw new Meteor.Error("empty field");
+    }
     Posts.insert({
       text: text,
       createdAt: new Date(),
