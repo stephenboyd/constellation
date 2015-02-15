@@ -34,7 +34,6 @@ UI.registerHelper("prettifyDate", function(timestamp) {
   return moment(new Date(timestamp)).fromNow();
 });
 
-$('#container').masonry({
+$('.container').isotope({
   // options...
-  isAnimated: true
 });
