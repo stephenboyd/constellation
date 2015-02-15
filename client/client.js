@@ -1,4 +1,6 @@
 Meteor.subscribe("posts");
+Meteor.subscribe("userData");
+
 Template.body.helpers({
   posts: function () {
     return Posts.find({}, {sort: {createdAt: -1}});
@@ -32,8 +34,4 @@ Template.post.helpers({
 
 UI.registerHelper("prettifyDate", function(timestamp) {
   return moment(new Date(timestamp)).fromNow();
-});
-
-$('.container').isotope({
-  // options...
 });

@@ -1,4 +1,3 @@
-
 body {
   padding-top: 40px;
   padding-left: 5%;
@@ -22,21 +21,3 @@ header {
   float: left;
 }
 
-#fit-width .masonry {
-  margin: 0 auto;
-}
-
-/**** Transitions ****/
-
-.masonry,
-.masonry .masonry-brick {
-          transition-duration: 0.4s;
-}
-
-.masonry {
-          transition-property: height, width;
-}
-
-.masonry .masonry-brick {
-          transition-property: left, right, top;
-}
