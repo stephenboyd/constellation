@@ -2,11 +2,11 @@ body {
   padding-top: 20px;
   padding-left: 5%;
   padding-right: 5%;
-  background: black;
+  background: #337ab7;
 }
 @media only screen and (min-device-width: 480px){
   body {
-    background-image: url("space.jpg");
+    background-image: url("mw-dark-1080.jpg");
     background-attachment: fixed;
     background-position: center;
     background-size: cover;
@@ -18,15 +18,30 @@ header {
   padding-left: 40px;
   padding-right: 40px;
   color: white;
-  background: rgba(0, 0, 0, 0.6);
   display: inline-block;
   margin-bottom: 20px;
+}
+
+header:link {
+  color: white;
+}
+
+header:visited {
+  color: white;
+}
+
+.login-link-text {
+  color: white;
 }
 
 .main {
 }
 
 .col-md-3 {
+  min-width: 32%;
+}
+
+.col-sm-5 {
   min-width: 32%;
 }
 

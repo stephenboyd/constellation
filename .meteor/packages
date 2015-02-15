@@ -10,3 +10,5 @@ accounts-ui
 twbs:bootstrap
 momentjs:moment
 jquery
+aldeed:autoform
+aldeed:collection2
