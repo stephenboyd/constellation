@@ -2,11 +2,10 @@ body {
   padding-top: 20px;
   padding-left: 5%;
   padding-right: 5%;
-  background: #337ab7;
+  background: white;
 }
 @media only screen and (min-device-width: 480px){
   body {
-    background-image: url("mw-dark-1080.jpg");
     background-attachment: fixed;
     background-position: center;
     background-size: cover;
@@ -17,21 +16,12 @@ body {
 header {
   padding-left: 40px;
   padding-right: 40px;
-  color: white;
   display: inline-block;
   margin-bottom: 20px;
 }
 
-header:link {
-  color: white;
-}
-
-header:visited {
-  color: white;
-}
-
 .login-link-text {
-  color: white;
+  color: #286090;
 }
 
 .main {
@@ -47,9 +37,9 @@ header:visited {
 
 #new-post-area {
   background: white;
-  margin-bottom: 12px;
-  margin-left: 6px;
-  margin-right: 6px;
+  margin-bottom: 16px;
+  margin-left: 8px;
+  margin-right: 8px;
   padding-top: 5px;
   min-height: 200px;
   border: 1px solid #FF7272;
@@ -73,11 +63,12 @@ header:visited {
 
 .item {
   background: white;
-  margin-bottom: 12px;
-  margin-left: 6px;
-  margin-right: 6px;
+  margin-bottom: 16px;
+  margin-left: 8px;
+  margin-right: 8px;
   padding-top: 5px;
   min-height: 200px;
+  border-top: 1px solid lightgrey;
 }
 
 .post-header {
@@ -85,6 +76,7 @@ header:visited {
 }
 
 .date {
+  color: lightgrey;
 }
 
 .delete {
