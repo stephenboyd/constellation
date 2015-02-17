@@ -25,7 +25,9 @@ Posts.attachSchema(new SimpleSchema({
   },
   text: {
     type: String,
-    label: "text"
+    label: "text",
+    max: 10000
+      //add postID?
   }
 }));
 

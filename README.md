@@ -1,2 +1,2 @@
 # constellation
-An attempt at making a social network with Meteor.
+Currently a scratchpad for learning Meteor.

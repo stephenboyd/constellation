@@ -6,6 +6,7 @@ body {
 }
 @media only screen and (min-device-width: 480px){
   body {
+    background-image: url("mw-dark-1080.jpg");
     background-attachment: fixed;
     background-position: center;
     background-size: cover;
@@ -16,19 +17,21 @@ body {
 header {
   padding-left: 40px;
   padding-right: 40px;
+  padding-bottom: 20px;
   display: inline-block;
   margin-bottom: 20px;
+  background: #FF7272;
 }
 
 .login-link-text {
-  color: #286090;
+  color: white;
 }
 
 .main {
 }
 
 .col-md-3 {
-  min-width: 32%;
+  min-width: 31%;
 }
 
 .col-sm-5 {
@@ -36,12 +39,6 @@ header {
 }
 
 #new-post-area {
-  background: white;
-  margin-bottom: 16px;
-  margin-left: 8px;
-  margin-right: 8px;
-  padding-top: 5px;
-  min-height: 200px;
   border: 1px solid #FF7272;
 }
 
@@ -64,8 +61,7 @@ header {
 .item {
   background: white;
   margin-bottom: 16px;
-  margin-left: 8px;
-  margin-right: 8px;
+  margin-right: 1%;
   padding-top: 5px;
   min-height: 200px;
   border-top: 1px solid lightgrey;
