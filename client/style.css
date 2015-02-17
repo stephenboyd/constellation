@@ -30,6 +30,10 @@ header {
 .main {
 }
 
+.pre {
+  white-space: pre-wrap;
+}
+
 .col-md-3 {
   min-width: 31%;
 }
@@ -40,6 +44,14 @@ header {
 
 #new-post-area {
   border: 1px solid #FF7272;
+}
+
+.control-label {
+  display: none;
+}
+
+.help-block {
+  display: none;
 }
 
 .form-control {
@@ -63,7 +75,7 @@ header {
   margin-bottom: 16px;
   margin-right: 1%;
   padding-top: 5px;
-  min-height: 200px;
+  min-height: 220px;
   border-top: 1px solid lightgrey;
 }
 
