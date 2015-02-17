@@ -24,4 +24,13 @@ Meteor.methods({
     }
   },
 
+  updatePost: function (postId, newText) {
+    var post = Posts.findOne(postId);
+    if (post.owner !== Meteor.userId()) {
+      throw new Meteor.Error("not-authorized");
+    } else {
+    Posts.update(postId, {$set: {"text": newText} });
+    }
+  },
+
 });

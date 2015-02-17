@@ -81,13 +81,26 @@ header {
 
 .post-header {
   color: #FF7272;
+  display: inline;
+}
+
+.text {
+  display: inline-block;
 }
 
 .date {
   color: lightgrey;
 }
 
-.delete {
+.edit {
+  margin-right: 10px;
+}
+
+.edit:hover {
+  color: lightgreen
+}
+
+.post-options {
   float: right;
 }
 

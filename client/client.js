@@ -23,6 +23,10 @@ Accounts.ui.config({
 Template.post.events({
   "click .delete": function () {
     Meteor.call("deletePost", this._id);
+  },
+  "click .update": function (event) {
+    var text = event.target.text.value;
+    Meteor.call("updatePost", this._id, text);
   }
 });
 
