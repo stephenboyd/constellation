@@ -12,6 +12,7 @@ Template.body.events({
     var text = event.target.text.value;
     Meteor.call("addPost", text);
     event.target.text.value = "";
+    $('.modal').modal('hide');
     return false;
   }
 });
@@ -37,5 +38,5 @@ Template.post.helpers({
 });
 
 UI.registerHelper("prettifyDate", function(timestamp) {
-  return moment(new Date(timestamp)).fromNow();
+  return moment(timestamp).fromNow();
 });

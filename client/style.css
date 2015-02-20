@@ -4,12 +4,32 @@ body {
   padding-right: 5%;
   background: white;
 }
-@media only screen and (min-device-width: 480px){
+@media only screen and (min-device-width: 1367px){
   body {
     background-image: url("mw-dark-1080.jpg");
     background-attachment: fixed;
     background-position: center;
     background-size: cover;
+  }
+}
+@media only screen and (min-device-width: 641px){
+  body {
+    background-image: url("mw-dark-768.jpg");
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+  }
+}
+@media only screen and (max-device-width: 640px){
+  body {
+    background-image: url("mw-dark-mobile-wide.jpg");
+    background-position: center;
+  }
+}
+@media only screen and (max-device-width: 360px){
+  body {
+    background-image: url("mw-dark-mobile.jpg");
+    background-position: center;
   }
 }
 
@@ -34,12 +54,19 @@ header {
   white-space: pre-wrap;
 }
 
-.col-md-3 {
+.col-lg-3 {
+  min-height: 180px;
+}
+
+.col-md-5 {
   min-width: 31%;
 }
 
 .col-sm-5 {
   min-width: 32%;
+}
+
+.col-xs-11 {
 }
 
 #new-post-area {
@@ -70,12 +97,25 @@ header {
   color: black;
 }
 
+#new-post-modal-button {
+  background: #66CC00;
+  color: white;
+  margin-bottom: 16px;
+  margin-right: 1%;
+  border-radius: 5px;
+
+}
+
+.modal-sm {
+  min-width: 40%;
+}
+
 .item {
   background: white;
   margin-bottom: 16px;
   margin-right: 1%;
   padding-top: 5px;
-  min-height: 220px;
+  min-height: width;
   border-top: 1px solid lightgrey;
 }
 
@@ -108,3 +148,6 @@ header {
   color: black
 }
 
+div {
+  transition: all 0.4s;
+}
