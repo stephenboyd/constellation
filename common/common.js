@@ -30,11 +30,3 @@ Posts.attachSchema(new SimpleSchema({
       //add postID?
   }
 }));
-
-
-
-if (Meteor.isServer) {
-  Meteor.publish("posts", function () {
-    return Posts.find();
-  });
-}

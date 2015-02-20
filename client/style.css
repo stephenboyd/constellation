@@ -16,8 +16,6 @@ body {
   body {
     background-image: url("mw-dark-768.jpg");
     background-attachment: fixed;
-    background-position: center;
-    background-size: cover;
   }
 }
 @media only screen and (max-device-width: 640px){
@@ -115,7 +113,6 @@ header {
   margin-bottom: 16px;
   margin-right: 1%;
   padding-top: 5px;
-  min-height: width;
   border-top: 1px solid lightgrey;
 }
 
