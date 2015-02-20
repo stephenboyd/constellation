@@ -26,6 +26,11 @@ Meteor.methods({
 
   updatePost: function (postId, newText) {
     var post = Posts.findOne(postId);
+    console.log("postId = " + postId);
+    console.log("newText = " + newText);
+    if (newText === ""){
+      throw new Meteor.Error("empty field");
+    }
     if (post.owner !== Meteor.userId()) {
       throw new Meteor.Error("not-authorized");
     } else {

@@ -14,7 +14,17 @@ Template.body.events({
     event.target.text.value = "";
     $('.modal').modal('hide');
     return false;
+  },
+  "submit .update-post": function (event) {
+    var text = event.target.text.value;
+    console.log("submit button clicked");
+    Meteor.call("updatePost", thisPostId, text);
+    event.target.text.value = "";
+    $('.updateTextArea').val("");
+    $('.modal').modal('hide');
+    return false;
   }
+
 });
 
 Accounts.ui.config({
@@ -22,12 +32,19 @@ Accounts.ui.config({
 });
 
 Template.post.events({
+  "click .close": function () {
+    $('.modal').modal('hide');
+  },
   "click .delete": function () {
     Meteor.call("deletePost", this._id);
   },
-  "click .update": function (event) {
-    var text = event.target.text.value;
-    Meteor.call("updatePost", this._id, text);
+  "click .edit": function () {
+    console.log("edit button clicked");
+    postText = this.text;
+    thisPostId = this._id;
+    $('.updateTextArea').val(postText);
+    console.log("post text: " + postText);
+    console.log("postId: " + thisPostId);
   }
 });
 
