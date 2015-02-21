@@ -4,6 +4,10 @@ Meteor.subscribe("userData");
 Template.body.helpers({
   posts: function () {
     return Posts.find({}, {sort: {createdAt: -1}});
+  },
+  username: function () {
+    console.log("username() was called");
+    return Meteor.user().username;
   }
 });
 
@@ -19,6 +23,16 @@ Template.body.events({
     var text = event.target.text.value;
     Meteor.call("updatePost", thisPostId, text);
     event.target.text.value = "";
+    $('.updateTextArea').val("");
+    $('.modal').modal('hide');
+    return false;
+  },
+  "click #user-options-button": function () {
+    $('.profile-field').val(Meteor.user().profile);
+  },
+  "submit .edit-profile": function (event) {
+    var text = event.target.text.value;
+    Meteor.call("updateProfile", text);
     $('.updateTextArea').val("");
     $('.modal').modal('hide');
     return false;
@@ -54,3 +68,6 @@ UI.registerHelper("prettifyDate", function(timestamp) {
   return moment(timestamp).fromNow();
 });
 
+UI.registerHelper("currentUserName", function () {
+  return Meteor.user().username;
+});

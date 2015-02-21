@@ -36,4 +36,8 @@ Meteor.methods({
     }
   },
 
+  updateProfile: function (newText) {
+    Meteor.users.update(this.userId, {$set: {profile: newText} } );
+  }
+
 });
