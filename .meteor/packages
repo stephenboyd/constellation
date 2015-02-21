@@ -6,9 +6,13 @@
 
 meteor-platform
 accounts-password
-accounts-ui
 twbs:bootstrap
 momentjs:moment
 jquery
 aldeed:autoform
 aldeed:collection2
+cfs:standard-packages
+cfs:filesystem
+less
+accounts-ui-unstyled
+accounts-ui

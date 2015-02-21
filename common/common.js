@@ -27,6 +27,9 @@ Posts.attachSchema(new SimpleSchema({
     type: String,
     label: "text",
     max: 10000
-      //add postID?
   }
 }));
+
+var Images = new FS.Collection("images", {
+  stores: [new FS.Store.FileSystem("images", {path: "~/constellation/public/uploads"})]
+});

@@ -1,0 +1,107 @@
+<template name="post">
+  <div class="post">
+    <div class="item col-lg-3 col-md-5 col-sm-5 col-xs-11">
+      <div class="post-header">
+        <strong>{{username}}</strong>
+        <span class="date">{{prettifyDate createdAt}}</span>
+        {{#if isOwner}}
+          <div class="post-options">
+            <span type="button" class="edit modal-edit" id="edit-post-modal-button" data-toggle="modal" data-target=".modal-edit-modal-sm" title="edit post">
+              <span class="glyphicon glyphicon-pencil"></span>
+            </span>
+            <span type="button" title="delete post" class="delete">
+              <span class="glyphicon glyphicon-remove"></span>
+            </span>
+          </div>
+        {{/if}}
+      </div>
+      <br>
+      <span class="text pre">{{text}}</span>
+      <br>
+      <br>
+    </div>
+  </div>
+</template>
+
+<template name="editPost">
+  <div class="modal fade modal-edit-modal-sm" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">X</span>
+          </button>
+          <h4 class="modal-title" id="editModalLabel">edit post</h4>
+        </div>
+        <div class="modal-body">
+          <div id="edit-post-area">
+            <form class="update-post">
+              <textarea type="text" id="text" class="form-control updateTextArea" rows=8 ></textarea>
+              <button type="submit" class="btn btn-primary" id="submit-update-button">
+                <span class="glyphicon glyphicon-plus"></span> save
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+
+<template name="newPost">
+  <button type="button" id="new-post-button" class="btn btn-primary col-lg-3 col-md-5 col-sm-5 col-xs-11" data-toggle="modal" data-target=".modal-new-post-sm">
+    <span class="glyphicon glyphicon-plus"></span> new post
+  </button>
+
+  <div class="modal fade modal-new-post-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">X</span>
+          </button>
+          <h4 class="modal-title" id="new-post-label">create new post</h4>
+        </div>
+        <div class="modal-body">{{>newPostForm}}</div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<template name="newPostForm">
+  <div id="new-post-area">
+    <form class="new-post">
+      <textarea type="text" id="text" class="form-control" rows=8 placeholder="Type your new post here."></textarea>
+      <button type="submit" class="btn btn-primary" id="submit-new-button">
+        <span class="glyphicon glyphicon-plus"></span> submit
+      </button>
+    </form>
+  </div>
+</template>
+
+<template name="customLoginButtons">
+  {{#if currentUser}}
+    logged in.
+    {{username}}
+  {{else}}
+    <button type="button" id="login-button" class="btn btn-primary" data-toggle="modal" data-target=".modal-login">
+      log in
+    </button>
+    <div class ="modal fade modal-login" tabindex="-1" role="dialog">
+      <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">X</span>
+            </button>
+            <h4 class="modal-title">log in</h4>
+          </div>
+          <div class="modal-body">
+            Sorry this isn't finished yet. Use the other sign-in button.
+          </div>
+        </div>
+      </div>
+    </div>
+  {{/if}}
+</template>

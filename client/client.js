@@ -17,7 +17,6 @@ Template.body.events({
   },
   "submit .update-post": function (event) {
     var text = event.target.text.value;
-    console.log("submit button clicked");
     Meteor.call("updatePost", thisPostId, text);
     event.target.text.value = "";
     $('.updateTextArea').val("");
@@ -39,12 +38,9 @@ Template.post.events({
     Meteor.call("deletePost", this._id);
   },
   "click .edit": function () {
-    console.log("edit button clicked");
-    postText = this.text;
+    var postText = this.text;
     thisPostId = this._id;
     $('.updateTextArea').val(postText);
-    console.log("post text: " + postText);
-    console.log("postId: " + thisPostId);
   }
 });
 
@@ -57,3 +53,4 @@ Template.post.helpers({
 UI.registerHelper("prettifyDate", function(timestamp) {
   return moment(timestamp).fromNow();
 });
+

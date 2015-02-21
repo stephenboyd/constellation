@@ -1,0 +1,30 @@
+<head>
+  <title>constellation</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+</head>
+
+<body>
+  <header>
+    <div class="header">
+      <div id="title-box" class="col-lg-3 col-md-5 col-sm-5 col-xs-11">
+        <h1>constellation</h1>
+        {{> customLoginButtons}}
+        {{> loginButtons}}
+      </div>
+      {{#if currentUser}}
+        {{> newPost}}
+      {{/if}}
+    </div>
+  </header>
+
+  <div class="clear"></div>
+  
+  <div id="container-fluid main">
+    <div id="post-area">
+      {{#each posts}}
+        {{> post}}
+      {{/each}}
+    </div>
+  </div>
+  {{> editPost}}
+</body>
