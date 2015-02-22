@@ -1,14 +1,10 @@
 Meteor.subscribe("posts");
-Meteor.subscribe("userData");
+Meteor.subscribe("allUsers");
 
 Template.body.helpers({
   posts: function () {
     return Posts.find({}, {sort: {createdAt: -1}});
   },
-  username: function () {
-    console.log("username() was called");
-    return Meteor.user().username;
-  }
 });
 
 Template.body.events({
@@ -55,6 +51,17 @@ Template.post.events({
     var postText = this.text;
     thisPostId = this._id;
     $('.updateTextArea').val(postText);
+  },
+  "click .username-link": function () {
+    var userProfile = Meteor.users.findOne(this.owner);
+    var profileText = "";
+    if (userProfile.profile === undefined){
+      profileText = "";
+    } else {
+      profileText = userProfile.profile;
+    }
+    $('#profile-title').text(userProfile.username);
+    $('#profile-text').text(profileText);
   }
 });
 

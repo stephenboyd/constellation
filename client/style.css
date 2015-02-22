@@ -122,6 +122,10 @@ header {
   min-width: 40%;
 }
 
+.modal {
+  transition: all 0.4s;
+}
+
 .item {
   background: white;
   margin-bottom: 16px;
@@ -129,6 +133,7 @@ header {
   padding-top: 5px;
   border-top: 1px solid lightgrey;
   min-height: 180px;
+  transition: all 0.4s;
 }
 
 .post-header {
@@ -160,6 +165,3 @@ header {
   color: black
 }
 
-div {
-  transition: all 0.4s;
-}
