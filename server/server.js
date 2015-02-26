@@ -2,6 +2,15 @@ Meteor.publish("posts", function () {
   return Posts.find();
 });
 
-Meteor.publish("allUsers", function () {
-  return Meteor.users.find({});
+Meteor.users.deny({
+  update: function() {
+    return true;
+  }
 });
+
+Meteor.publish("allUsers", function () {
+  var selector = {};
+  var options = {fields: { username: true, profile: true}};
+  return Meteor.users.find(selector, options);
+});
+

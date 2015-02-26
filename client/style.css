@@ -36,8 +36,10 @@ body {
   padding-bottom: 20px;
   padding-left: 40px;
   margin-bottom: 20px;
-  background: #FF7272;
+  padding-right: 40px;
+  background: white;
   margin-right: 1%;
+  float: left;
 }
 
 .header {
@@ -51,7 +53,6 @@ header {
 }
 
 .login-link-text {
-  color: white;
 }
 
 .main {
@@ -113,6 +114,7 @@ header {
 
 #login-button {
   background: grey;
+  display: none;
 }
 #login-button:hover {
   background: green;

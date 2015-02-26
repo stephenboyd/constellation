@@ -78,3 +78,4 @@ UI.registerHelper("prettifyDate", function(timestamp) {
 UI.registerHelper("currentUserName", function () {
   return Meteor.user().username;
 });
+

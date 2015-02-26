@@ -1,6 +1,6 @@
 <template name="header">
   <div class="header">
-    <div id="title-box" class="col-lg-3 col-md-5 col-sm-5 col-xs-11">
+    <div id="title-box">
       <h1>constellation</h1>
       {{> customLoginButtons}}
       {{> loginButtons}}
@@ -150,7 +150,7 @@
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">X</span>
           </button>
-          <h4 class="modal-title">{{currentUserName}}</h4>
+          <h4 class="modal-title">edit profile: {{currentUserName}}</h4>
         </div>
         <div class="modal-body">
           <form class="edit-profile">
