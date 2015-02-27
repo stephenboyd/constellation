@@ -1,21 +1,5 @@
 <head>
   <title>constellation</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <link rel="icon" sizes="16x16 32x32" href="/favicon.ico?v=2">
 </head>
-
-<body>
-  <header>
-    {{> header }}
-  </header>
-
-  <div class="clear"></div>
-  
-  <div id="container-fluid main">
-    <div id="post-area">
-      {{#each posts}}
-        {{> post}}
-      {{/each}}
-    </div>
-  </div>
-  {{> editPost}}
-</body>

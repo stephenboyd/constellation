@@ -1,4 +1,4 @@
-Meteor.publish("posts", function () {
+Meteor.publish("posts", function (author) {
   return Posts.find();
 });
 
@@ -10,7 +10,7 @@ Meteor.users.deny({
 
 Meteor.publish("allUsers", function () {
   var selector = {};
-  var options = {fields: { username: true, profile: true}};
+  var options = {fields: { username: true, profile: true, image: true}};
   return Meteor.users.find(selector, options);
 });
 

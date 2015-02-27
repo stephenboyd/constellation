@@ -7,6 +7,19 @@ Template.body.helpers({
   },
 });
 
+Template.editProfile.helpers({
+  postsByUser: function () {
+    id = Meteor.userId();
+    return Posts.find({owner: id}, {sort: {createdAt: -1}});
+  },
+});
+
+Template.postsArea.helpers({
+  posts: function () {
+    return Posts.find({}, {sort: {createdAt: -1}});
+  },
+});
+
 Template.body.events({
   "submit .new-post": function (event) {
     var text = event.target.text.value;
