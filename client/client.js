@@ -21,21 +21,6 @@ Template.postsArea.helpers({
 });
 
 Template.body.events({
-  "submit .new-post": function (event) {
-    var text = event.target.text.value;
-    Meteor.call("addPost", text);
-    event.target.text.value = "";
-    $('.modal').modal('hide');
-    return false;
-  },
-  "submit .update-post": function (event) {
-    var text = event.target.text.value;
-    Meteor.call("updatePost", thisPostId, text);
-    event.target.text.value = "";
-    $('.updateTextArea').val("");
-    $('.modal').modal('hide');
-    return false;
-  },
   "click #user-options-button": function () {
     $('.profile-field').val(Meteor.user().profile);
   },
@@ -47,6 +32,47 @@ Template.body.events({
     return false;
   }
 
+});
+
+Template.newPostForm.events({
+  "submit .new-post": function (event) {
+    event.preventDefault();
+    var content = $(event.target).find('[name=text]').val();
+    var post = {
+      text: content
+    };
+    Meteor.call("addPost", post);
+    event.target.text.value = "";
+    $('.modal').modal('hide');
+    return false;
+  },
+});
+
+Template.editPost.events({
+  "submit .update-post": function (event) {
+    event.preventDefault();
+    var text = event.target.text.value;
+    Meteor.call("updatePost", thisPostId, text);
+    event.target.text.value = "";
+    $('.updateTextArea').val("");
+    $('.modal').modal('hide');
+    return false;
+  },
+});
+  
+
+Template.postSubmit.events({
+  'submit form': function(event) {
+    event.preventDefault();
+
+    var post = {
+      url: $(event.target).find('[name=url]').val(),
+      title: $(event.target).find('[name=title]').val()
+    };
+
+    post._id = Posts.insert(post);
+    Router.go('postPage', post);
+  }
 });
 
 Accounts.ui.config({
@@ -91,4 +117,5 @@ UI.registerHelper("prettifyDate", function(timestamp) {
 UI.registerHelper("currentUserName", function () {
   return Meteor.user().username;
 });
+
 

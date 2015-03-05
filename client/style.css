@@ -1,46 +1,36 @@
 body {
-  padding-top: 20px;
-  padding-left: 5%;
-  padding-right: 5%;
+  background: rgb(240,240,228);
+  background-size: fill;
+}
+
+.navbar {
+  padding-left: 20px;
   background: white;
-}
-@media only screen and (min-device-width: 1367px){
-  body {
-    background-image: url("mw-dark-1080.jpg");
-    background-attachment: fixed;
-    background-position: center;
-    background-size: cover;
-  }
-}
-@media only screen and (min-device-width: 641px){
-  body {
-    background-image: url("mw-dark-768.jpg");
-    background-attachment: fixed;
-  }
-}
-@media only screen and (max-device-width: 640px){
-  body {
-    background-image: url("mw-dark-mobile-wide.jpg");
-    background-position: center;
-  }
-}
-@media only screen and (max-device-width: 360px){
-  body {
-    background-image: url("mw-dark-mobile.jpg");
-    background-position: center;
-  }
-}
-
-
-#title-box {
   padding-bottom: 10px;
-  padding-left: 40px;
-  padding-top: 20px;
-  margin-bottom: 20px;
-  background: white;
-  margin-right: 1%;
-  float: left;
+  border: 0px;
+  color: grey;
+  border-radius: 0px;
+  padding-top: 0px;
+  height: 80px;
 }
+
+.navbar-brand {
+  padding-top: 5px;
+}
+
+.navbar-brand img {
+  height: 65px;
+  padding-left: 40px;
+}
+
+h1 {
+  color: grey;
+}
+
+.wordmark {
+
+}
+
 
 .header {
 }
@@ -84,11 +74,6 @@ header {
 }
 
 #new-post-area {
-  border: 1px solid #FF7272;
-}
-
-.control-label {
-  display: none;
 }
 
 .help-block {
@@ -102,7 +87,7 @@ header {
 
 .btn {
   border-radius: 0;
-  background: #FF7272;
+  background: #66CC00;
   border: none;
 }
 
@@ -112,19 +97,18 @@ header {
 }
 
 #new-post-button {
-  background: #66CC00;
-  color: white;
+  background: white;
+  color: #66CC00;
   margin-right: 1%;
   margin-bottom: 16px;
-  border-radius: 5px;
+  border: 2px solid rgba(102, 204, 0, 0.5);
+  border-radius: 3px;
+  font-weight: bold;
 }
 
-#login-button {
-  background: grey;
-  display: none;
-}
-#login-button:hover {
-  background: green;
+#new-post-button:hover {
+  color: white;
+  background: #66CC00;
 }
 
 .modal-sm {
@@ -135,14 +119,19 @@ header {
   transition: all 0.4s;
 }
 
+
 .item {
   background: white;
   margin-bottom: 16px;
   margin-right: 1%;
   padding-top: 5px;
-  border-top: 1px solid lightgrey;
+  border-top: 0px solid rgba(255, 114, 114, 0.5);
   min-height: 180px;
   transition: all 0.4s;
+}
+
+.discuss {
+  margin-left: 10px;
 }
 
 .post-header {

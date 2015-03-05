@@ -14,7 +14,6 @@ aldeed:collection2
 cfs:standard-packages
 cfs:filesystem
 less
-accounts-ui-unstyled
-accounts-ui
 iron:router
 sacha:spin
+ian:accounts-ui-bootstrap-3

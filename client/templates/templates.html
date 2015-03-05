@@ -1,29 +1,39 @@
-<template name="header">
-  <div class="header">
-    <div id="title-box">
-      <div class="wordmark">
-        <a href="{{pathFor 'postsArea'}}"><img class="img-responsive" src="/constel-logo-2.svg" alt="constellation"></a>
-      </div>
-      {{> customLoginButtons}}
-      {{> loginButtons}}
-    </div>
-    {{#if currentUser}}
-      {{> newPost}}
-      {{> editProfile}}
-    {{/if}}
+<template name="postsArea">
+  {{> newPost}}
+  <div id="post-area">
+    {{#each posts}}
+      {{> post}}
+    {{/each}}
   </div>
-  {{> profile}}
-  <div class="clear"></div>
+  {{> editPost}}
 </template>
 
-<template name="postsArea">
-  <div id="container-fluid main">
-    <div id="post-area">
-      {{#each posts}}
-        {{> post}}
-      {{/each}}
+<template name="header">
+  <nav class="navbar navbar-default" role="navigation">
+    <div class="container-fluid">
+      <div class="navbar-header header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navigation">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <span class="wordmark">
+          <a class="navbar-brand" href="/"><img src="/constel-logo-3.png" alt="constellation"></a>
+        </span>
+      </div>
+      <div class="collapse navbar-collapse" id="navigation">
+        <ul class="nav navbar-nav navbar-right">
+          {{#if currentUser}}
+            <li><a href="{{pathFor 'postSubmit'}}">Submit Post</a></li>
+          {{/if}}
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          {{> loginButtons}}
+        </ul>
+      </div>
     </div>
-  </div>
+  </nav> 
 </template>
 
 <template name="profile">
@@ -35,7 +45,6 @@
             <span aria-hidden="true">X</span>
           </button>
           <h4 class="modal-title" id="profile-title"></h4>
-
         </div>
         <div class="modal-body">
           <div id="profile-text"></div>
@@ -47,7 +56,7 @@
 
 <template name="post">
   <div class="post">
-    <div class="item col-lg-3 col-md-5 col-sm-5 col-xs-11">
+    <div class="item col-lg-3 col-md-5 col-sm-5 col-xs-12">
       <div class="post-header">
         <a href="#{{username}}" data-toggle="modal" data-target=".user-profile" type="button" class="username-link link"><strong>{{username}}</strong></a>
         <span class="date">{{prettifyDate createdAt}}</span>
@@ -71,9 +80,28 @@
   </div>
 </template>
 
+<template name="postSubmit">
+  <form class="main form page">
+    <div clas="form-group">
+      <label class="control-label" for="url">URL</label>
+      <div class="controls">
+        <input name="url" id="url" type="text" value="" placeholder="Your URL" class="form-control"/>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label" for="title">Title</label>
+      <div class="controls">
+        <input name="title" id="title" type="text" value="" placeholder="Name your post" class="form-control"/>
+      </div>
+    </div>
+    <input type="submit" value="Submit" class="btn btn-primary"/>
+  </form>
+</template>
+
+
 <template name="editPost">
   <div class="modal fade modal-edit-modal-sm" aria-hidden="true">
-    <div class="modal-dialog modal-sm">
+    <div class="modal-dialog modal-sm modal-edit-modal-sm">
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -101,7 +129,6 @@
   <button type="button" id="new-post-button" class="btn btn-primary col-lg-3 col-md-5 col-sm-5 col-xs-11" data-toggle="modal" data-target=".modal-new-post-sm">
     <span class="glyphicon glyphicon-plus"></span> new post
   </button>
-
   <div class="modal fade modal-new-post-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-sm">
       <div class="modal-content">
@@ -120,7 +147,7 @@
 <template name="newPostForm">
   <div id="new-post-area">
     <form class="new-post">
-      <textarea type="text" id="text" class="form-control" rows=8 placeholder="Type your new post here."></textarea>
+      <textarea type="text" id="text" name="text" class="form-control" rows=8 placeholder="Type your new post here."></textarea>
       <button type="submit" class="btn btn-primary" id="submit-new-button">
         <span class="glyphicon glyphicon-plus"></span> submit
       </button>
@@ -181,5 +208,11 @@
         </div>
       </div>
     </div>
+  </div>
+</template>
+
+<template name="accessDenied">
+  <div class="access-denied page jumbotron">
+    <p>You need to log in to to get here.</p>
   </div>
 </template>

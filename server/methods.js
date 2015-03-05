@@ -1,14 +1,16 @@
 Meteor.methods({
 
-  addPost: function (text) {
+  addPost: function (post) {
     if (! Meteor.userId()) {
       throw new Meteor.Error("not-authorized");
     }
-    if (text === ""){
+    if (post.text === ""){
       throw new Meteor.Error("empty field");
     }
     Posts.insert({
-      text: text,
+      title: post.title,
+      text: post.text,
+      image: post.image,
       createdAt: new Date(),
       owner: Meteor.userId(),
       username: Meteor.user().username
