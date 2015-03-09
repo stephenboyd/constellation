@@ -1,5 +1,7 @@
 <template name="postsArea">
-  {{> newPost}}
+  {{#if currentUser}}
+    {{> newPost}}
+  {{/if}}
   <div id="post-area">
     {{#each posts}}
       {{> post}}
@@ -9,18 +11,18 @@
 </template>
 
 <template name="header">
-  <nav class="navbar navbar-default" role="navigation">
+  <nav class="navbar navbar-default navbar-static-top" role="navigation">
     <div class="container-fluid">
       <div class="navbar-header header">
+        <span class="wordmark">
+          <a class="navbar-brand" href="/"><h1>constellation</h1></a>
+        </span>
         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navigation">
           <span class="sr-only">Toggle navigation</span>
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <span class="wordmark">
-          <a class="navbar-brand" href="/"><img src="/constel-logo-3.png" alt="constellation"></a>
-        </span>
       </div>
       <div class="collapse navbar-collapse" id="navigation">
         <ul class="nav navbar-nav navbar-right">

@@ -37,11 +37,14 @@ Template.body.events({
 Template.newPostForm.events({
   "submit .new-post": function (event) {
     event.preventDefault();
-    var content = $(event.target).find('[name=text]').val();
     var post = {
-      text: content
+      text: $(event.target).find('[name=text]').val()
+
     };
-    Meteor.call("addPost", post);
+    Meteor.call("addPost", post, function(error, result){
+      if (error) return alert(error.reason);
+      Router.go('postPage', {_id: result._id});
+    });
     event.target.text.value = "";
     $('.modal').modal('hide');
     return false;

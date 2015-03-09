@@ -1,13 +1,14 @@
 Meteor.methods({
 
   addPost: function (post) {
-    if (! Meteor.userId()) {
-      throw new Meteor.Error("not-authorized");
-    }
+    check(Meteor.userId(), String);
     if (post.text === ""){
       throw new Meteor.Error("empty field");
     }
-    Posts.insert({
+    check(post, {
+      text: String
+    });
+    var postId = Posts.insert({
       title: post.title,
       text: post.text,
       image: post.image,
@@ -15,9 +16,13 @@ Meteor.methods({
       owner: Meteor.userId(),
       username: Meteor.user().username
     });
+    return {
+      _id: postId
+    };
   },
 
   deletePost: function (postId) {
+    check(postId, String);
     var post = Posts.findOne(postId);
     if (post.owner !== Meteor.userId()) {
       throw new Meteor.Error("not-authorized");

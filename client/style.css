@@ -1,6 +1,5 @@
 body {
   background: rgb(240,240,228);
-  background-size: fill;
 }
 
 .navbar {
@@ -12,6 +11,10 @@ body {
   border-radius: 0px;
   padding-top: 0px;
   height: 80px;
+}
+
+.collapse {
+  text-align: right;
 }
 
 .navbar-brand {
