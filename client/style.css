@@ -13,8 +13,13 @@ body {
   height: 80px;
 }
 
+.navbar .li {
+}
+
 .collapse {
+  border: 0px;
   text-align: right;
+  background: white;
 }
 
 .navbar-brand {
@@ -133,8 +138,18 @@ header {
   transition: all 0.4s;
 }
 
-.discuss {
-  margin-left: 10px;
+.post-page {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.post-link {
+  margin-left: 20px;
+}
+
+.comments-count {
+  margin-left: 20px;
+  color: lightgrey;
 }
 
 .post-header {
@@ -148,6 +163,7 @@ header {
 
 .date {
   color: lightgrey;
+  margin-left: 10px;
 }
 
 .edit {

@@ -29,9 +29,9 @@
           {{#if currentUser}}
             <li><a href="{{pathFor 'postSubmit'}}">Submit Post</a></li>
           {{/if}}
+          <li><a>{{> loginButtons}}</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
-          {{> loginButtons}}
         </ul>
       </div>
     </div>
@@ -62,7 +62,7 @@
       <div class="post-header">
         <a href="#{{username}}" data-toggle="modal" data-target=".user-profile" type="button" class="username-link link"><strong>{{username}}</strong></a>
         <span class="date">{{prettifyDate createdAt}}</span>
-        <a href="{{pathFor 'postPage'}}" class="discuss">    discuss</a>
+        <a href="{{pathFor 'postPage'}}" class="post-link link">{{commentsCount}} comments</a>
         {{#if isOwner}}
           <div class="post-options">
             <span type="button" class="edit modal-edit" id="edit-post-modal-button" data-toggle="modal" data-target=".modal-edit-modal-sm" title="edit post">
@@ -81,6 +81,62 @@
     </div>
   </div>
 </template>
+
+<template name="postPage">
+  <div class="post post-page page item col-lg-6 col-md-6 col-sm-12 col-xs-12">
+    <div class="post-page page">
+      <div class="post-header">
+        <a href="#{{username}}" data-toggle="modal" data-target=".user-profile" type="button" class="username-link link"><strong>{{username}}</strong></a>
+        <span class="date">{{prettifyDate createdAt}}</span>
+        <span class="comments-count"> {{commentsCount}} comments</span>
+        {{#if isOwner}}
+          <div class="post-options">
+            <span type="button" class="edit modal-edit" id="edit-post-modal-button" data-toggle="modal" data-target=".modal-edit-modal-sm" title="edit post">
+              <span class="glyphicon glyphicon-pencil"></span>
+            </span>
+            <span type="button" title="delete post" class="delete">
+              <span class="glyphicon glyphicon-remove"></span>
+            </span>
+          </div>
+        {{/if}}
+      </div>
+      <br>
+      <div class="post-body">
+        <span class="text pre">{{text}}</span>
+      </div>
+      <br>
+      <ul class="comments">
+        {{#each comments}}
+          {{> comment}}
+        {{/each}}
+      </ul>
+      <br>
+    </div>
+  </div>
+</template>
+
+<template name="comment">
+  <li class="comment">
+    <div class="comment-header">
+      <a href="#{{username}}" data-toggle="modal" data-target=".user-profile" type="button" class="username-link link"><strong>{{username}}</strong></a>
+      <span class="date">{{prettifyDate createdAt}}</span>
+      {{#if isOwner}}
+        <div class="post-options">
+          <span type="button" class="edit modal-edit" id="edit-post-modal-button" data-toggle="modal" data-target=".modal-edit-modal-sm" title="edit post">
+            <span class="glyphicon glyphicon-pencil"></span>
+          </span>
+          <span type="button" title="delete post" class="delete">
+            <span class="glyphicon glyphicon-remove"></span>
+          </span>
+        </div>
+      {{/if}}
+    </div>
+    <div class="comment-body">
+      <p>{{text}}</p>
+    </div>
+  </li>
+</template>
+
 
 <template name="postSubmit">
   <form class="main form page">

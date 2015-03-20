@@ -74,7 +74,9 @@ Template.postSubmit.events({
     };
 
     post._id = Posts.insert(post);
+    $('.modal').modal('hide');
     Router.go('postPage', post);
+    return false;
   }
 });
 
@@ -88,6 +90,7 @@ Template.post.events({
   },
   "click .delete": function () {
     Meteor.call("deletePost", this._id);
+    Router.go('/');
   },
   "click .edit": function () {
     var postText = this.text;
@@ -110,6 +113,21 @@ Template.post.events({
 Template.post.helpers({
   isOwner: function () {
     return this.owner === Meteor.userId();
+  },
+  commentsCount: function () {
+    return Comments.find({postId: this._id}).count();
+  }
+});
+
+Template.postPage.helpers ({
+  isOwner: function () {
+    return this.owner === Meteor.userId();
+  },
+  comments: function () {
+    return Comments.find({postId: this._id});
+  },
+  commentsCount: function () {
+    return Comments.find({postId: this._id}).count();
   }
 });
 
