@@ -1,6 +1,5 @@
 <template name="postsArea">
   {{#if currentUser}}
-    {{> newPost}}
   {{/if}}
   <div id="post-area">
     {{#each posts}}
@@ -26,16 +25,17 @@
       </div>
       <div class="collapse navbar-collapse" id="navigation">
         <ul class="nav navbar-nav navbar-right">
-          {{#if currentUser}}
-            <li><a href="{{pathFor 'postSubmit'}}">Submit Post</a></li>
-          {{/if}}
           <li><a>{{> loginButtons}}</a></li>
+          {{#if currentUser}}
+            <li><a>{{> newPostButton}}</a></li>
+          {{/if}}
         </ul>
         <ul class="nav navbar-nav navbar-right">
         </ul>
       </div>
     </div>
   </nav> 
+  {{> newPostModal}}
 </template>
 
 <template name="profile">
@@ -111,6 +111,7 @@
         {{/each}}
       </ul>
       <br>
+      {{> newCommentForm}}
     </div>
   </div>
 </template>
@@ -137,25 +138,16 @@
   </li>
 </template>
 
-
-<template name="postSubmit">
-  <form class="main form page">
-    <div clas="form-group">
-      <label class="control-label" for="url">URL</label>
-      <div class="controls">
-        <input name="url" id="url" type="text" value="" placeholder="Your URL" class="form-control"/>
-      </div>
-    </div>
-    <div class="form-group">
-      <label class="control-label" for="title">Title</label>
-      <div class="controls">
-        <input name="title" id="title" type="text" value="" placeholder="Name your post" class="form-control"/>
-      </div>
-    </div>
-    <input type="submit" value="Submit" class="btn btn-primary"/>
-  </form>
+<template name="newCommentForm">
+  <div id="new-comment-area">
+    <form class="new-comment">
+      <textarea type="text" id="text" name="text" class="form-control" rows=4 placeholder="Type a comment here."></textarea>
+      <button type="submit" class="btn btn-primary" id="submit-new-button">
+        <span class="glyphicon glyphicon-plus"></span> save comment
+      </button>
+    </form>
+  </div>
 </template>
-
 
 <template name="editPost">
   <div class="modal fade modal-edit-modal-sm" aria-hidden="true">
@@ -183,11 +175,15 @@
 </template>
 
 
-<template name="newPost">
-  <button type="button" id="new-post-button" class="btn btn-primary col-lg-3 col-md-5 col-sm-5 col-xs-11" data-toggle="modal" data-target=".modal-new-post-sm">
+<template name="newPostButton">
+  <button type="button" id="new-post-button" class="btn btn-primary" data-toggle="modal" data-target=".modal-new-post">
     <span class="glyphicon glyphicon-plus"></span> new post
   </button>
-  <div class="modal fade modal-new-post-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+</template>
+
+
+<template name="newPostModal">
+  <div class="modal fade modal-new-post" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-sm">
       <div class="modal-content">
         <div class="modal-header">

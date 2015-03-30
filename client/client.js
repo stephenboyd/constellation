@@ -43,11 +43,11 @@ Template.newPostForm.events({
     };
     Meteor.call("addPost", post, function(error, result){
       if (error) return alert(error.reason);
+      event.target.text.value = "";
+      $('.modal-new-post').modal('toggle');
       Router.go('postPage', {_id: result._id});
-    });
-    event.target.text.value = "";
-    $('.modal').modal('hide');
     return false;
+    });
   },
 });
 
@@ -64,21 +64,6 @@ Template.editPost.events({
 });
   
 
-Template.postSubmit.events({
-  'submit form': function(event) {
-    event.preventDefault();
-
-    var post = {
-      url: $(event.target).find('[name=url]').val(),
-      title: $(event.target).find('[name=title]').val()
-    };
-
-    post._id = Posts.insert(post);
-    $('.modal').modal('hide');
-    Router.go('postPage', post);
-    return false;
-  }
-});
 
 Accounts.ui.config({
   passwordSignupFields: "USERNAME_ONLY"
