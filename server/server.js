@@ -14,3 +14,7 @@ Meteor.publish("allUsers", function () {
   return Meteor.users.find(selector, options);
 });
 
+Meteor.publish("comments", function (postId) {
+  check(postId, String);
+  return Comments.find({postId: postId});
+});

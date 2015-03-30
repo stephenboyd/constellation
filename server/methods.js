@@ -14,10 +14,36 @@ Meteor.methods({
       image: post.image,
       createdAt: new Date(),
       owner: Meteor.userId(),
-      username: Meteor.user().username
+      username: Meteor.user().username,
+      commentsCount: 0
     });
     return {
       _id: postId
+    };
+  },
+
+  addComment: function (comment) {
+    check(Meteor.userId(), String);
+    if (comment.text === undefined){
+      throw new Meteor.Error("empty field");
+    }
+    check(this.userId, String);
+    check(comment, {
+      postId: String,
+      text: String
+    });
+    console.log(comment.text);
+    console.log(comment.postId);
+    var commentId = Comments.insert({
+      postId: comment.postId,
+      text: comment.text,
+      createdAt: new Date(),
+      owner: Meteor.userId(),
+      username: Meteor.user().username
+    });
+    Posts.update(comment.postId, {$inc: {commentsCount: 1}});
+    return {
+      _id: commentId
     };
   },
 

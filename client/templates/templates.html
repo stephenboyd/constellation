@@ -111,7 +111,9 @@
         {{/each}}
       </ul>
       <br>
-      {{> newCommentForm}}
+      {{#if currentUser}}
+        {{> newCommentForm}}
+      {{/if}}
     </div>
   </div>
 </template>
@@ -141,7 +143,7 @@
 <template name="newCommentForm">
   <div id="new-comment-area">
     <form class="new-comment">
-      <textarea type="text" id="text" name="text" class="form-control" rows=4 placeholder="Type a comment here."></textarea>
+      <textarea type="text" id="text" name="text" class="form-control" rows=3 placeholder="Type a comment here."></textarea>
       <button type="submit" class="btn btn-primary" id="submit-new-button">
         <span class="glyphicon glyphicon-plus"></span> save comment
       </button>

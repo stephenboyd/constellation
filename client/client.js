@@ -51,6 +51,22 @@ Template.newPostForm.events({
   },
 });
 
+Template.newCommentForm.events({
+  "submit .new-comment": function (event) {
+    event.preventDefault();
+    var comment = {
+      text: $(event.target).find('[name=text]').val(),
+      postId: this._id
+    };
+    Meteor.call("addComment", comment, function(error, commentId){
+      if (error) return alert(error.reason);
+      event.target.text.value = "";
+      console.log("client calls addComment");
+      return false;
+    });
+  },
+});
+
 Template.editPost.events({
   "submit .update-post": function (event) {
     event.preventDefault();
@@ -99,9 +115,6 @@ Template.post.helpers({
   isOwner: function () {
     return this.owner === Meteor.userId();
   },
-  commentsCount: function () {
-    return Comments.find({postId: this._id}).count();
-  }
 });
 
 Template.postPage.helpers ({
