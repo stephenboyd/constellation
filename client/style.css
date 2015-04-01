@@ -105,18 +105,17 @@ header {
 }
 
 #new-post-button {
-  background: white;
-  color: #66CC00;
+  color: white;
+  background: #66CC00;
   margin-right: 1%;
-  margin-bottom: 16px;
   border: 2px solid rgba(102, 204, 0, 0.5);
   border-radius: 3px;
   font-weight: bold;
 }
 
 #new-post-button:hover {
-  color: white;
-  background: #66CC00;
+  background: white;
+  color: #66CC00;
 }
 
 .modal-sm {
@@ -145,6 +144,10 @@ header {
 
 .post-link {
   margin-left: 20px;
+}
+
+.comment {
+  list-style-type: none;
 }
 
 .comments-count {
