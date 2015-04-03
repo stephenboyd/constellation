@@ -1,6 +1,8 @@
 Meteor.subscribe("posts");
 Meteor.subscribe("allUsers");
 
+
+
 Template.body.helpers({
   posts: function () {
     return Posts.find({}, {sort: {createdAt: -1}});
@@ -31,10 +33,17 @@ Template.body.events({
     $('.modal').modal('hide');
     return false;
   }
-
 });
 
-Template.newPostForm.events({
+Template.header.events({
+  "click .new-post-button": function () {
+  }
+});
+
+Template.newPostModal.events({
+  "shown.bs.modal #modal-new-super": function () {
+    console.log("fack");
+  },
   "submit .new-post": function (event) {
     event.preventDefault();
     var post = {
@@ -51,6 +60,12 @@ Template.newPostForm.events({
   },
 });
 
+Template.newPostModal.rendered = function () {
+  $('#modal-new-post').on('shown.bs.modal', function () {
+    $("#new-post-text").focus();
+  });
+};
+
 Template.newCommentForm.events({
   "submit .new-comment": function (event) {
     event.preventDefault();
@@ -61,7 +76,6 @@ Template.newCommentForm.events({
     Meteor.call("addComment", comment, function(error, commentId){
       if (error) return alert(error.reason);
       event.target.text.value = "";
-      console.log("client calls addComment");
       return false;
     });
   },
@@ -94,9 +108,11 @@ Template.post.events({
     Router.go('/');
   },
   "click .edit": function () {
+    console.log("edit button clicked");
     var postText = this.text;
     thisPostId = this._id;
     $('.updateTextArea').val(postText);
+    $('.updateTextArea').focus();
   },
   "click .username-link": function () {
     var userProfile = Meteor.users.findOne(this.owner);

@@ -1,6 +1,4 @@
 <template name="postsArea">
-  {{#if currentUser}}
-  {{/if}}
   <div id="post-area">
     {{#each posts}}
       {{> post}}
@@ -178,36 +176,34 @@
 
 
 <template name="newPostButton">
-  <button type="button" id="new-post-button" class="btn btn-primary" data-toggle="modal" data-target=".modal-new-post">
+  <button type="button" class="new-post-button btn btn-primary" data-toggle="modal" data-target="#modal-new-post">
     <span class="glyphicon glyphicon-plus"></span> new post
   </button>
 </template>
 
 
 <template name="newPostModal">
-  <div class="modal fade modal-new-post" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal" id="modal-new-post" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-sm">
-      <div class="modal-content">
+      <div class="modal-content" id="modal-new-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">X</span>
           </button>
           <h4 class="modal-title" id="new-post-label">create new post</h4>
         </div>
-        <div class="modal-body">{{>newPostForm}}</div>
+        <div class="modal-body">
+          <div id="new-post-area">
+            <form class="new-post">
+              <textarea type="text" id="new-post-text" name="text" class="form-control" rows=8 placeholder="Type your new post here."></textarea>
+              <button type="submit" class="btn btn-primary" id="submit-new-button">
+                <span class="glyphicon glyphicon-plus"></span> submit
+              </button>
+            </form>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</template>
-
-<template name="newPostForm">
-  <div id="new-post-area">
-    <form class="new-post">
-      <textarea type="text" id="text" name="text" class="form-control" rows=8 placeholder="Type your new post here."></textarea>
-      <button type="submit" class="btn btn-primary" id="submit-new-button">
-        <span class="glyphicon glyphicon-plus"></span> submit
-      </button>
-    </form>
   </div>
 </template>
 

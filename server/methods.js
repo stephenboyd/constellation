@@ -32,8 +32,6 @@ Meteor.methods({
       postId: String,
       text: String
     });
-    console.log(comment.text);
-    console.log(comment.postId);
     var commentId = Comments.insert({
       postId: comment.postId,
       text: comment.text,

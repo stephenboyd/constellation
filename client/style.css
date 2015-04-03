@@ -22,6 +22,11 @@ body {
   background: white;
 }
 
+.collapsing {
+  border: 0px;
+  text-align: right;
+}
+
 .navbar-brand {
   padding-top: 5px;
 }
