@@ -5,12 +5,12 @@ body {
 .navbar {
   padding-left: 20px;
   background: white;
-  padding-bottom: 10px;
+  padding-bottom: 5px;
   border: 0px;
   color: grey;
   border-radius: 0px;
   padding-top: 0px;
-  height: 80px;
+  height: 65px;
 }
 
 .navbar .li {
@@ -25,10 +25,12 @@ body {
 .collapsing {
   border: 0px;
   text-align: right;
+  background: white;
 }
 
 .navbar-brand {
-  padding-top: 5px;
+  padding-top: 0px;
+  padding-left: 50px;
 }
 
 .navbar-brand img {
@@ -40,32 +42,13 @@ h1 {
   color: grey;
 }
 
-.wordmark {
-
-}
-
-
-.header {
-}
-
-header {
-}
-
-.wordmark {
-  padding-bottom: 10px;
-  padding-right: 40px;
-  overflow: visible;
+#wordmark {
+  margin: 10px;
 }
 
 
 .clear {
   clear: both;
-}
-
-.login-link-text {
-}
-
-.main {
 }
 
 .pre {
