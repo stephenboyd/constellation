@@ -1,8 +1,6 @@
 Meteor.subscribe("posts");
 Meteor.subscribe("allUsers");
 
-
-
 Template.body.helpers({
   posts: function () {
     return Posts.find({}, {sort: {createdAt: -1}});
@@ -35,25 +33,14 @@ Template.body.events({
   }
 });
 
-Template.header.events({
-  "click .new-post-button": function () {
-  }
-});
-
 Template.newPostModal.events({
-  "shown.bs.modal #modal-new-super": function () {
-    console.log("fack");
-  },
   "submit .new-post": function (event) {
     event.preventDefault();
-    var post = {
-      text: $(event.target).find('[name=text]').val()
-
-    };
+    var post = { text: $(event.target).find('[name=text]').val() };
     Meteor.call("addPost", post, function(error, result){
       if (error) return alert(error.reason);
+      $('#modal-new-post').modal('hide');
       event.target.text.value = "";
-      $('.modal-new-post').modal('toggle');
       Router.go('postPage', {_id: result._id});
     return false;
     });
@@ -62,6 +49,7 @@ Template.newPostModal.events({
 
 Template.newPostModal.rendered = function () {
   $('#modal-new-post').on('shown.bs.modal', function () {
+    console.log("you can see the modal");
     $("#new-post-text").focus();
   });
 };
@@ -88,7 +76,7 @@ Template.editPost.events({
     Meteor.call("updatePost", thisPostId, text);
     event.target.text.value = "";
     $('.updateTextArea').val("");
-    $('.modal').modal('hide');
+    $('.modal-edit-modal-sm').modal('hide');
     return false;
   },
 });
@@ -153,4 +141,25 @@ UI.registerHelper("currentUserName", function () {
   return Meteor.user().username;
 });
 
+var flag = false;
 
+Template.postsArea.rendered = function() {
+  flag = false;
+};
+
+Template.post.rendered = function() {
+  if (flag === false){
+    console.log("tarted up");
+    console.log("started up");
+    $('#post-area').isotope({
+      // options...
+      itemSelector: '.item',
+      layoutMode: 'masonry',
+      masonry: {
+        gutter: 0,
+        containerStyle: null
+      }
+    });
+    flag = true;
+  }
+};

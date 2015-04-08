@@ -14,8 +14,9 @@ aldeed:collection2
 cfs:standard-packages
 cfs:filesystem
 less
-iron:router
 sacha:spin
 ian:accounts-ui-bootstrap-3
 audit-argument-checks
 msavin:mongol
+iron:router
+isotope:isotope

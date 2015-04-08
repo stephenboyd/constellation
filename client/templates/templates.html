@@ -1,5 +1,5 @@
 <template name="postsArea">
-  <div id="post-area">
+  <div id="post-area" class="js-isotope container-fluid isotope">
     {{#each posts}}
       {{> post}}
     {{/each}}
@@ -53,28 +53,26 @@
 </template>
 
 <template name="post">
-  <div class="post">
-    <div class="item col-lg-3 col-md-5 col-sm-5 col-xs-12">
-      <div class="post-header">
-        <a href="#{{username}}" data-toggle="modal" data-target=".user-profile" type="button" class="username-link link"><strong>{{username}}</strong></a>
-        <span class="date">{{prettifyDate createdAt}}</span>
-        <a href="{{pathFor 'postPage'}}" class="post-link link">{{commentsCount}} comments</a>
-        {{#if isOwner}}
-          <div class="post-options">
-            <span type="button" class="edit modal-edit" id="edit-post-modal-button" data-toggle="modal" data-target=".modal-edit-modal-sm" title="edit post">
-              <span class="glyphicon glyphicon-pencil"></span>
-            </span>
-            <span type="button" title="delete post" class="delete">
-              <span class="glyphicon glyphicon-remove"></span>
-            </span>
-          </div>
-        {{/if}}
-      </div>
-      <br>
-      <span class="text pre">{{text}}</span>
-      <br>
-      <br>
+  <div class="post item col-lg-3 col-md-5 col-sm-5 col-xs-12">
+    <div class="post-header">
+      <a href="#{{username}}" data-toggle="modal" data-target=".user-profile" type="button" class="username-link link"><strong>{{username}}</strong></a>
+      <span class="date">{{prettifyDate createdAt}}</span>
+      <a href="{{pathFor 'postPage'}}" class="post-link link">{{commentsCount}} comments</a>
+      {{#if isOwner}}
+        <div class="post-options">
+          <span type="button" class="edit modal-edit" id="edit-post-modal-button" data-toggle="modal" data-target=".modal-edit-modal-sm" title="edit post">
+            <span class="glyphicon glyphicon-pencil"></span>
+          </span>
+          <span type="button" title="delete post" class="delete">
+            <span class="glyphicon glyphicon-remove"></span>
+          </span>
+        </div>
+      {{/if}}
     </div>
+    <br>
+    <span class="text pre">{{text}}</span>
+    <br>
+    <br>
   </div>
 </template>
 
@@ -181,7 +179,7 @@
 
 
 <template name="newPostModal">
-  <div class="modal fade" id="modal-new-post" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal" id="modal-new-post" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-sm">
       <div class="modal-content" id="modal-new-content">
         <div class="modal-header">
