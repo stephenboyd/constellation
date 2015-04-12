@@ -18,3 +18,8 @@ Meteor.publish("comments", function (postId) {
   check(postId, String);
   return Comments.find({postId: postId});
 });
+
+Meteor.publish("postsByUser", function (usernameQuery) {
+  check(usernameQuery, String);
+  return Posts.find({username: usernameQuery});
+});

@@ -54,7 +54,7 @@
 <template name="post">
   <div class="post item">
     <div class="post-header">
-      <a href="#{{username}}" data-toggle="modal" data-target=".user-profile" type="button" class="username-link link"><strong>{{username}}</strong></a>
+      <a href="/user/{{username}}" class="username-link link"><strong>{{username}}</strong></a>
       <span class="date">{{prettifyDate createdAt}}</span>
       <a href="{{pathFor 'postPage'}}" class="post-link link">{{commentsCount}} comments</a>
       {{#if isOwner}}
@@ -79,7 +79,7 @@
 <template name="postPage">
   <div class="post post-page page item col-lg-6 col-md-6 col-sm-12 col-xs-12">
     <div class="post-header">
-      <a href="#{{username}}" data-toggle="modal" data-target=".user-profile" type="button" class="username-link link"><strong>{{username}}</strong></a>
+      <a href="/user/{{username}}" class="username-link link"><strong>{{username}}</strong></a>
       <span class="date">{{prettifyDate createdAt}}</span>
       <span class="comments-count"> {{commentsCount}} comments</span>
       {{#if isOwner}}
@@ -98,6 +98,7 @@
       <span class="text pre">{{text}}</span>
     </div>
     <br>
+    {{subscribeToComments}}
     <ul class="comments">
       {{#each comments}}
         {{> comment}}
@@ -263,3 +264,10 @@
     <p>You need to log in to to get here.</p>
   </div>
 </template>
+
+<template name="userPage">
+  {{#each postsByUser}}
+    {{> postPage}}
+  {{/each}}
+</template>
+

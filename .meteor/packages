@@ -11,8 +11,6 @@ momentjs:moment
 jquery
 aldeed:autoform
 aldeed:collection2
-cfs:standard-packages
-cfs:filesystem
 less
 sacha:spin
 ian:accounts-ui-bootstrap-3

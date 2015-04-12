@@ -154,11 +154,20 @@ Template.postPage.helpers ({
     return this.owner === Meteor.userId();
   },
   comments: function () {
-    return Comments.find({postId: this._id});
+    return Comments.find({postId: this._id}, {sort: {createdAt: -1}});
   },
   commentsCount: function () {
     return Comments.find({postId: this._id}).count();
-  }
+  },
+	subscribeToComments: function () {
+		Meteor.subscribe("comments", this._id);
+	}
+});
+
+Template.userPage.helpers ({
+	postsByUser: function () {
+		return Posts.find({username: this.username}, {sort: {createdAt: -1}});
+	}
 });
 
 UI.registerHelper("prettifyDate", function(timestamp) {
