@@ -1,8 +1,7 @@
 <template name="postsArea">
   <div id="post-area" class="js-isotope container-fluid isotope">
-    {{#each posts}}
-      {{> post}}
-    {{/each}}
+    {{> reactiveBlockGrid cursor=posts template="post" gutter=10}}
+    <span class="sizer item col-lg-3 col-md-5 col-sm-5 col-xs-12"></span>
   </div>
   {{> editPost}}
 </template>
@@ -53,7 +52,7 @@
 </template>
 
 <template name="post">
-  <div class="post item col-lg-3 col-md-5 col-sm-5 col-xs-12">
+  <div class="post item">
     <div class="post-header">
       <a href="#{{username}}" data-toggle="modal" data-target=".user-profile" type="button" class="username-link link"><strong>{{username}}</strong></a>
       <span class="date">{{prettifyDate createdAt}}</span>
@@ -73,8 +72,31 @@
     <span class="text pre">{{text}}</span>
     <br>
     <br>
+    <p hidden class="created-at">{{uglifyDate createdAt}}</p>
   </div>
 </template>
+
+<template name="isotopeScript">
+  <script>
+    console.log("script tag in template fired");
+    var $container = $('#post-area').isotope({
+      // options...
+      itemSelector: '.item',
+      layoutMode: 'masonry',
+      masonry: {
+        gutter: 13,
+        containerStyle: null,
+        columnWidth: '.sizer'
+      },
+      getSortData: {time: '.created-at'},
+      sortBy: 'time',
+      sortAscending: false
+    });
+    $container.isotope('updateSortData').isotope();
+  </script>
+</template>
+
+
 
 <template name="postPage">
   <div class="post post-page page item col-lg-6 col-md-6 col-sm-12 col-xs-12">

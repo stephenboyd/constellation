@@ -55,7 +55,23 @@ h1 {
   white-space: pre-wrap;
 }
 
+.item {
+  min-width: 31%
+}
+
+li {
+  list-style: none;
+}
+
+.reactiveBlockGrid li {
+  padding-left: 0px;
+  padding-right: 0px;
+  padding-top: 0x;
+  padding-bottom: 10px;
+}
+
 .col-lg-3 {
+
 }
 
 .col-md-5 {
@@ -63,7 +79,7 @@ h1 {
 }
 
 .col-sm-5 {
-  min-width: 32%;
+  min-width: 31%;
 }
 
 .col-xs-11 {
@@ -115,14 +131,20 @@ h1 {
 }
 
 
-.item {
+.post {
   background: white;
-  margin-bottom: 16px;
-  margin-right: 1%;
+  padding-right: 15px;
+  padding-left: 15px;
+  padding-bottom: 15px;
   padding-top: 5px;
   border-top: 0px solid rgba(255, 114, 114, 0.5);
   min-height: 180px;
   transition: all 0.4s;
+}
+
+.sizer {
+  margin: 0px;
+  height: 1px;
 }
 
 .post-page {

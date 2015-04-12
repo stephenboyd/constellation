@@ -1,12 +1,6 @@
 Meteor.subscribe("posts");
 Meteor.subscribe("allUsers");
 
-Template.body.helpers({
-  posts: function () {
-    return Posts.find({}, {sort: {createdAt: -1}});
-  },
-});
-
 Template.editProfile.helpers({
   postsByUser: function () {
     id = Meteor.userId();
@@ -41,7 +35,7 @@ Template.newPostModal.events({
       if (error) return alert(error.reason);
       $('#modal-new-post').modal('hide');
       event.target.text.value = "";
-      Router.go('postPage', {_id: result._id});
+      //Router.go('postPage', {_id: result._id});
     return false;
     });
   },
@@ -121,6 +115,15 @@ Template.post.helpers({
   },
 });
 
+Template.body.onRendered( function () {
+	console.log("body template rendered");
+});
+
+
+Template.post.onRendered( function () {
+	$("li[data-reactive-block-grid-item-id]").addClass("col-lg-3 col-md-5 col-sm-5 col-xs-11");
+});
+
 Template.postPage.helpers ({
   isOwner: function () {
     return this.owner === Meteor.userId();
@@ -141,25 +144,6 @@ UI.registerHelper("currentUserName", function () {
   return Meteor.user().username;
 });
 
-var flag = false;
-
-Template.postsArea.rendered = function() {
-  flag = false;
-};
-
-Template.post.rendered = function() {
-  if (flag === false){
-    console.log("tarted up");
-    console.log("started up");
-    $('#post-area').isotope({
-      // options...
-      itemSelector: '.item',
-      layoutMode: 'masonry',
-      masonry: {
-        gutter: 0,
-        containerStyle: null
-      }
-    });
-    flag = true;
-  }
-};
+UI.registerHelper("uglifyDate", function(timestamp) {
+	return moment(timestamp).unix();
+});
