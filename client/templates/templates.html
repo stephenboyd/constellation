@@ -76,62 +76,39 @@
   </div>
 </template>
 
-<template name="isotopeScript">
-  <script>
-    console.log("script tag in template fired");
-    var $container = $('#post-area').isotope({
-      // options...
-      itemSelector: '.item',
-      layoutMode: 'masonry',
-      masonry: {
-        gutter: 13,
-        containerStyle: null,
-        columnWidth: '.sizer'
-      },
-      getSortData: {time: '.created-at'},
-      sortBy: 'time',
-      sortAscending: false
-    });
-    $container.isotope('updateSortData').isotope();
-  </script>
-</template>
-
-
-
 <template name="postPage">
   <div class="post post-page page item col-lg-6 col-md-6 col-sm-12 col-xs-12">
-    <div class="post-page page">
-      <div class="post-header">
-        <a href="#{{username}}" data-toggle="modal" data-target=".user-profile" type="button" class="username-link link"><strong>{{username}}</strong></a>
-        <span class="date">{{prettifyDate createdAt}}</span>
-        <span class="comments-count"> {{commentsCount}} comments</span>
-        {{#if isOwner}}
-          <div class="post-options">
-            <span type="button" class="edit modal-edit" id="edit-post-modal-button" data-toggle="modal" data-target=".modal-edit-modal-sm" title="edit post">
-              <span class="glyphicon glyphicon-pencil"></span>
-            </span>
-            <span type="button" title="delete post" class="delete">
-              <span class="glyphicon glyphicon-remove"></span>
-            </span>
-          </div>
-        {{/if}}
-      </div>
-      <br>
-      <div class="post-body">
-        <span class="text pre">{{text}}</span>
-      </div>
-      <br>
-      <ul class="comments">
-        {{#each comments}}
-          {{> comment}}
-        {{/each}}
-      </ul>
-      <br>
-      {{#if currentUser}}
-        {{> newCommentForm}}
+    <div class="post-header">
+      <a href="#{{username}}" data-toggle="modal" data-target=".user-profile" type="button" class="username-link link"><strong>{{username}}</strong></a>
+      <span class="date">{{prettifyDate createdAt}}</span>
+      <span class="comments-count"> {{commentsCount}} comments</span>
+      {{#if isOwner}}
+        <div class="post-options">
+          <span type="button" class="edit modal-edit" id="edit-post-modal-button" data-toggle="modal" data-target=".modal-edit-modal-sm" title="edit post">
+            <span class="glyphicon glyphicon-pencil"></span>
+          </span>
+          <span type="button" title="delete post" class="delete">
+            <span class="glyphicon glyphicon-remove"></span>
+          </span>
+        </div>
       {{/if}}
     </div>
+    <br>
+    <div class="post-body">
+      <span class="text pre">{{text}}</span>
+    </div>
+    <br>
+    <ul class="comments">
+      {{#each comments}}
+        {{> comment}}
+      {{/each}}
+    </ul>
+    <br>
+    {{#if currentUser}}
+      {{> newCommentForm}}
+    {{/if}}
   </div>
+  {{> editPost}}
 </template>
 
 <template name="comment">

@@ -124,6 +124,31 @@ Template.post.onRendered( function () {
 	$("li[data-reactive-block-grid-item-id]").addClass("col-lg-3 col-md-5 col-sm-5 col-xs-11 z1");
 });
 
+Template.postPage.events({
+  "click .delete": function () {
+    Meteor.call("deletePost", this._id);
+    Router.go('/');
+  },
+  "click .edit": function () {
+    console.log("edit button clicked");
+    var postText = this.text;
+    thisPostId = this._id;
+    $('.updateTextArea').val(postText);
+    $('.updateTextArea').focus();
+  },
+  "click .username-link": function () {
+    var userProfile = Meteor.users.findOne(this.owner);
+    var profileText = "";
+    if (userProfile.profile === undefined){
+      profileText = "";
+    } else {
+      profileText = userProfile.profile;
+    }
+    $('#profile-title').text(userProfile.username);
+    $('#profile-text').text(profileText);
+  }
+});
+
 Template.postPage.helpers ({
   isOwner: function () {
     return this.owner === Meteor.userId();
