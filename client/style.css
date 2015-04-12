@@ -6,7 +6,8 @@ body {
   padding-left: 20px;
   background: white;
   padding-bottom: 5px;
-  border: 0px;
+  border-bottom: 0px;
+  box-shadow: 0 1px rgba(0,0,0,0.12), 0 1px 6px rgba(0,0,0,0.12);
   color: grey;
   border-radius: 0px;
   padding-top: 0px;
@@ -43,7 +44,7 @@ h1 {
 }
 
 #wordmark {
-  margin: 10px;
+  margin-top: 10px;
 }
 
 
@@ -63,11 +64,20 @@ li {
   list-style: none;
 }
 
+.reactiveBlockGrid {
+  padding-left: 2%;
+  padding-right: 2%;
+  float: none;
+  margin: 0 auto;
+}
+
 .reactiveBlockGrid li {
   padding-left: 0px;
   padding-right: 0px;
   padding-top: 0x;
   padding-bottom: 10px;
+  float: none;
+  margin: auto;
 }
 
 .col-lg-3 {
@@ -85,7 +95,8 @@ li {
 .col-xs-11 {
 }
 
-#new-post-area {
+#post-area {
+  padding: 0px;
 }
 
 .help-block {
@@ -130,6 +141,8 @@ li {
   transition: all 0.4s;
 }
 
+.z1 {
+}
 
 .post {
   background: white;
@@ -140,6 +153,7 @@ li {
   border-top: 0px solid rgba(255, 114, 114, 0.5);
   min-height: 180px;
   transition: all 0.4s;
+  box-shadow: 0 1px rgba(0,0,0,0.12), 0 1px 6px rgba(0,0,0,0.12);
 }
 
 .sizer {
