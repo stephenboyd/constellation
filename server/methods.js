@@ -75,12 +75,9 @@ Meteor.methods({
 
   follow: function (userToFollow) {
     check(userToFollow, String);
-    Meteor.users.update(Meteor.user().username, {$push: { following: userToFollow}});
-    var fol = Meteor.users.findOne({username: userToFollow});
-    console.log("current user: " + Meteor.user().username);
-    console.log("user to follow: " + userToFollow);
-    console.log("id of user to follow: " + fol.userId);
-    console.log("current user is following: " + Meteor.user().following);
+    if (Meteor.user().following.indexOf(userToFollow) === -1){
+      Meteor.users.update(this.userId, {$push: { following: userToFollow}});
+    };
   }
 
 });

@@ -1,13 +1,6 @@
 Meteor.subscribe("posts");
 Meteor.subscribe("allUsers");
 
-Template.editProfile.helpers({
-  postsByUser: function () {
-    id = Meteor.userId();
-    return Posts.find({owner: id}, {sort: {createdAt: -1}});
-  },
-});
-
 Template.postsArea.helpers({
   posts: function () {
     return Posts.find({}, {sort: {createdAt: -1}});
@@ -43,7 +36,6 @@ Template.newPostModal.events({
 
 Template.newPostModal.rendered = function () {
   $('#modal-new-post').on('shown.bs.modal', function () {
-    console.log("you can see the modal");
     $("#new-post-text").focus();
   });
 };
@@ -86,7 +78,7 @@ Template.postHeader.events({
     $('.modal').modal('hide');
   },
   "click .delete": function () {
-    Meteor.call("deletePost", this.parent._id);
+    Meteor.call("deletePost", this._id);
     Router.go('/');
   },
   "click .edit": function () {
@@ -98,7 +90,7 @@ Template.postHeader.events({
     $('.updateTextArea').focus();
   },
   "click .username-link": function () {
-    var userProfile = Meteor.users.findOne(this.parent.owner);
+    var userProfile = Meteor.users.findOne(this.owner);
     var profileText = "";
     if (userProfile.profile === undefined){
       profileText = "";
@@ -112,18 +104,17 @@ Template.postHeader.events({
 
 Template.postHeader.helpers({
   isOwner: function () {
-		console.log('postHeader helper isOwner called');
     return this.owner === Meteor.userId();
   },
 });
 
 Template.body.onRendered( function () {
-	console.log("body template rendered");
+  console.log("body template rendered");
 });
 
 
 Template.post.onRendered( function () {
-	$("li[data-reactive-block-grid-item-id]").addClass("col-lg-3 col-md-5 col-sm-5 col-xs-11 z1");
+  $("li[data-reactive-block-grid-item-id]").addClass("col-lg-3 col-md-5 col-sm-5 col-xs-11 z1");
 });
 
 Template.postPage.helpers ({
@@ -136,26 +127,26 @@ Template.postPage.helpers ({
   commentsCount: function () {
     return Comments.find({postId: this._id}).count();
   },
-	subscribeToComments: function () {
-		Meteor.subscribe("comments", this._id);
-	}
+  subscribeToComments: function () {
+    Meteor.subscribe("comments", this._id);
+  }
 });
 
 Template.userPage.helpers ({
-	postsByUser: function () {
-		return Posts.find({username: this.username}, {sort: {createdAt: -1}});
-	}
+  postsByUser: function () {
+    return Posts.find({username: this.username}, {sort: {createdAt: -1}});
+  }
 });
 
 //write server-side verification
 Template.followWidget.events ({
-	"click #follow-button": function () {
-		console.log("follow button clicked");
-		console.log(this);
-		Meteor.call('follow', this.username, function(error, result) {
-			if (error) console.log(error);
-		});
-	}
+  "click #follow-button": function () {
+    console.log("follow button clicked");
+    console.log(this);
+    Meteor.call('follow', this.username, function(error, result) {
+      if (error) console.log(error);
+    });
+  }
 });
 
 UI.registerHelper("prettifyDate", function(timestamp) {
@@ -167,5 +158,5 @@ UI.registerHelper("currentUserName", function () {
 });
 
 UI.registerHelper("uglifyDate", function(timestamp) {
-	return moment(timestamp).unix();
+  return moment(timestamp).unix();
 });

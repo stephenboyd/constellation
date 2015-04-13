@@ -33,24 +33,6 @@
   {{> editPost}}
 </template>
 
-<template name="profile">
-  <div class="user-profile modal fade">
-    <div class="modal-dialog modal-sm">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">X</span>
-          </button>
-          <h4 class="modal-title" id="profile-title"></h4>
-        </div>
-        <div class="modal-body">
-          <div id="profile-text"></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</template>
-
 <template name="post">
   <div class="post item">
     {{> postHeader}}
@@ -193,31 +175,6 @@
       </div>
     </div>
   </div>
-</template>
-
-<template name="customLoginButtons">
-  {{#if currentUser}}
-    logged in.
-  {{else}}
-    <button type="button" id="login-button" class="btn btn-primary" data-toggle="modal" data-target=".modal-login">
-      log in
-    </button>
-    <div class ="modal fade modal-login" tabindex="-1" role="dialog">
-      <div class="modal-dialog modal-sm">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">X</span>
-            </button>
-            <h4 class="modal-title">log in</h4>
-          </div>
-          <div class="modal-body">
-            Sorry this isn't finished yet. Use the other sign-in button.
-          </div>
-        </div>
-      </div>
-    </div>
-  {{/if}}
 </template>
 
 <template name="editProfile">
