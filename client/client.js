@@ -81,23 +81,24 @@ Accounts.ui.config({
   passwordSignupFields: "USERNAME_ONLY"
 });
 
-Template.post.events({
+Template.postHeader.events({
   "click .close": function () {
     $('.modal').modal('hide');
   },
   "click .delete": function () {
-    Meteor.call("deletePost", this._id);
+    Meteor.call("deletePost", this.parent._id);
     Router.go('/');
   },
   "click .edit": function () {
     console.log("edit button clicked");
     var postText = this.text;
+		console.log(postText);
     thisPostId = this._id;
     $('.updateTextArea').val(postText);
     $('.updateTextArea').focus();
   },
   "click .username-link": function () {
-    var userProfile = Meteor.users.findOne(this.owner);
+    var userProfile = Meteor.users.findOne(this.parent.owner);
     var profileText = "";
     if (userProfile.profile === undefined){
       profileText = "";
@@ -109,8 +110,9 @@ Template.post.events({
   }
 });
 
-Template.post.helpers({
+Template.postHeader.helpers({
   isOwner: function () {
+		console.log('postHeader helper isOwner called');
     return this.owner === Meteor.userId();
   },
 });
@@ -122,31 +124,6 @@ Template.body.onRendered( function () {
 
 Template.post.onRendered( function () {
 	$("li[data-reactive-block-grid-item-id]").addClass("col-lg-3 col-md-5 col-sm-5 col-xs-11 z1");
-});
-
-Template.postPage.events({
-  "click .delete": function () {
-    Meteor.call("deletePost", this._id);
-    Router.go('/');
-  },
-  "click .edit": function () {
-    console.log("edit button clicked");
-    var postText = this.text;
-    thisPostId = this._id;
-    $('.updateTextArea').val(postText);
-    $('.updateTextArea').focus();
-  },
-  "click .username-link": function () {
-    var userProfile = Meteor.users.findOne(this.owner);
-    var profileText = "";
-    if (userProfile.profile === undefined){
-      profileText = "";
-    } else {
-      profileText = userProfile.profile;
-    }
-    $('#profile-title').text(userProfile.username);
-    $('#profile-text').text(profileText);
-  }
 });
 
 Template.postPage.helpers ({
@@ -167,6 +144,17 @@ Template.postPage.helpers ({
 Template.userPage.helpers ({
 	postsByUser: function () {
 		return Posts.find({username: this.username}, {sort: {createdAt: -1}});
+	}
+});
+
+//write server-side verification
+Template.followWidget.events ({
+	"click #follow-button": function () {
+		console.log("follow button clicked");
+		console.log(this);
+		Meteor.call('follow', this.username, function(error, result) {
+			if (error) console.log(error);
+		});
 	}
 });
 

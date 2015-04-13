@@ -3,7 +3,6 @@
     {{> reactiveBlockGrid cursor=posts template="post" gutter=10}}
     <span class="sizer item col-lg-3 col-md-5 col-sm-5 col-xs-12"></span>
   </div>
-  {{> editPost}}
 </template>
 
 <template name="header">
@@ -31,6 +30,7 @@
     </div>
   </nav> 
   {{> newPostModal}}
+  {{> editPost}}
 </template>
 
 <template name="profile">
@@ -53,23 +53,11 @@
 
 <template name="post">
   <div class="post item">
-    <div class="post-header">
-      <a href="/user/{{username}}" class="username-link link"><strong>{{username}}</strong></a>
-      <span class="date">{{prettifyDate createdAt}}</span>
-      <a href="{{pathFor 'postPage'}}" class="post-link link">{{commentsCount}} comments</a>
-      {{#if isOwner}}
-        <div class="post-options">
-          <span type="button" class="edit modal-edit" id="edit-post-modal-button" data-toggle="modal" data-target=".modal-edit-modal-sm" title="edit post">
-            <span class="glyphicon glyphicon-pencil"></span>
-          </span>
-          <span type="button" title="delete post" class="delete">
-            <span class="glyphicon glyphicon-remove"></span>
-          </span>
-        </div>
-      {{/if}}
-    </div>
+    {{> postHeader}}
     <br>
-    <span class="text pre">{{text}}</span>
+    <div class="post-body">
+      <span class="text pre">{{text}}</span>
+    </div>
     <br>
     <br>
     <p hidden class="created-at">{{uglifyDate createdAt}}</p>
@@ -78,21 +66,7 @@
 
 <template name="postPage">
   <div class="post post-page page item col-lg-6 col-md-6 col-sm-12 col-xs-12">
-    <div class="post-header">
-      <a href="/user/{{username}}" class="username-link link"><strong>{{username}}</strong></a>
-      <span class="date">{{prettifyDate createdAt}}</span>
-      <span class="comments-count"> {{commentsCount}} comments</span>
-      {{#if isOwner}}
-        <div class="post-options">
-          <span type="button" class="edit modal-edit" id="edit-post-modal-button" data-toggle="modal" data-target=".modal-edit-modal-sm" title="edit post">
-            <span class="glyphicon glyphicon-pencil"></span>
-          </span>
-          <span type="button" title="delete post" class="delete">
-            <span class="glyphicon glyphicon-remove"></span>
-          </span>
-        </div>
-      {{/if}}
-    </div>
+    {{> postHeader}}
     <br>
     <div class="post-body">
       <span class="text pre">{{text}}</span>
@@ -109,8 +83,26 @@
       {{> newCommentForm}}
     {{/if}}
   </div>
-  {{> editPost}}
 </template>
+
+<template name="postHeader">
+  <div class="post-header">
+    <a href="/user/{{username}}" class="username-link link"><strong>{{username}}</strong></a>
+    <span class="date">{{prettifyDate createdAt}}</span>
+    {{#if isOwner}}
+      <div class="post-options">
+        <span type="button" class="edit modal-edit" id="edit-post-modal-button" data-toggle="modal" data-target=".modal-edit-modal-sm" title="edit post">
+          <span class="glyphicon glyphicon-pencil"></span>
+        </span>
+        <span type="button" title="delete post" class="delete">
+          <span class="glyphicon glyphicon-remove"></span>
+        </span>
+      </div>
+    {{/if}}
+    <a href="{{pathFor 'postPage'}}" class="post-link link">{{commentsCount}} comments</a>
+  </div>
+</template>
+
 
 <template name="comment">
   <li class="comment">
@@ -266,8 +258,18 @@
 </template>
 
 <template name="userPage">
-  {{#each postsByUser}}
-    {{> postPage}}
-  {{/each}}
+  <div id="user-page" class="container-fluid">  
+    {{> followWidget}}
+    {{#each postsByUser}}
+      {{> postPage}}
+    {{/each}}
+  </div>
 </template>
 
+<template name="followWidget">
+  {{#if currentUser}}
+    <div id="test-widget" class="col-lg-3 col-md-3">
+      <button id="follow-button">follow</button>
+    </div>
+  {{/if}}
+</template>

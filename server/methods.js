@@ -56,6 +56,8 @@ Meteor.methods({
   },
 
   updatePost: function (postId, newText) {
+    check(postId, String);
+    check(newText, String);
     var post = Posts.findOne(postId);
     if (newText === ""){
       throw new Meteor.Error("empty field");
@@ -68,7 +70,17 @@ Meteor.methods({
   },
 
   updateProfile: function (newText) {
-    Meteor.users.update(this.userId, {$set: {profile: newText} } );
+    Meteor.users.update(this.userId, {$set: {profile: newText}});
+  },
+
+  follow: function (userToFollow) {
+    check(userToFollow, String);
+    Meteor.users.update(Meteor.user().username, {$push: { following: userToFollow}});
+    var fol = Meteor.users.findOne({username: userToFollow});
+    console.log("current user: " + Meteor.user().username);
+    console.log("user to follow: " + userToFollow);
+    console.log("id of user to follow: " + fol.userId);
+    console.log("current user is following: " + Meteor.user().following);
   }
 
 });

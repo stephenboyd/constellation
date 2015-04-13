@@ -10,7 +10,9 @@ Meteor.users.deny({
 
 Meteor.publish("allUsers", function () {
   var selector = {};
-  var options = {fields: { username: true, profile: true, image: true}};
+  var options = {
+    fields: { username: true, profile: true, image: true,
+              following: true}};
   return Meteor.users.find(selector, options);
 });
 
