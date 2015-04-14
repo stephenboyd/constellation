@@ -74,32 +74,14 @@ Accounts.ui.config({
 });
 
 Template.postHeader.events({
-  "click .close": function () {
-    $('.modal').modal('hide');
-  },
   "click .delete": function () {
     Meteor.call("deletePost", this._id);
     Router.go('/');
   },
   "click .edit": function () {
-    console.log("edit button clicked");
-    var postText = this.text;
-		console.log(postText);
-    thisPostId = this._id;
-    $('.updateTextArea').val(postText);
+    $('.updateTextArea').val(this.text);
     $('.updateTextArea').focus();
   },
-  "click .username-link": function () {
-    var userProfile = Meteor.users.findOne(this.owner);
-    var profileText = "";
-    if (userProfile.profile === undefined){
-      profileText = "";
-    } else {
-      profileText = userProfile.profile;
-    }
-    $('#profile-title').text(userProfile.username);
-    $('#profile-text').text(profileText);
-  }
 });
 
 Template.postHeader.helpers({
@@ -114,7 +96,7 @@ Template.body.onRendered( function () {
 
 
 Template.post.onRendered( function () {
-  $("li[data-reactive-block-grid-item-id]").addClass("col-lg-3 col-md-5 col-sm-5 col-xs-11 z1");
+  $("li[data-reactive-block-grid-item-id]").addClass("col-lg-3 col-md-5 col-sm-5 col-xs-11");
 });
 
 Template.postPage.helpers ({

@@ -74,10 +74,20 @@ Meteor.methods({
   },
 
   follow: function (userToFollow) {
+    check(this.userId, String);
     check(userToFollow, String);
     if (Meteor.user().following.indexOf(userToFollow) === -1){
       Meteor.users.update(this.userId, {$push: { following: userToFollow}});
     };
+  },
+
+  unfollow: function (userToUnfollow) {
+    check(this.userId, String);
+    check(userToUnfollow, String);
+    if (Meteor.user().following.indexOf(userToUnfollow) !== -1){
+      Meteor.users.update(this.userId, {$pull: { following: userToUnfollow}});
+    };
   }
+    
 
 });

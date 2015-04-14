@@ -14,9 +14,6 @@ body {
   height: 65px;
 }
 
-.navbar .li {
-}
-
 .collapse {
   border: 0px;
   text-align: right;
@@ -56,10 +53,6 @@ h1 {
   white-space: pre-wrap;
 }
 
-.item {
-  min-width: 31%
-}
-
 li {
   list-style: none;
 }
@@ -81,7 +74,6 @@ li {
 }
 
 .col-lg-3 {
-
 }
 
 .col-md-5 {
@@ -139,9 +131,6 @@ li {
 
 .modal {
   transition: all 0.4s;
-}
-
-.z1 {
 }
 
 .post {
