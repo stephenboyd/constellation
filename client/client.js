@@ -116,19 +116,41 @@ Template.postPage.helpers ({
 
 Template.userPage.helpers ({
   postsByUser: function () {
-    return Posts.find({username: this.username}, {sort: {createdAt: -1}});
+    return Posts.find({owner: this._id}, {sort: {createdAt: -1}});
+  },
+});
+
+Template.followWidget.helpers ({
+  following: function () {
+    if (Meteor.user().following.indexOf(this._id) !== -1) {
+      console.log(Meteor.user().following.indexOf(this._id));
+      console.log("following");
+      return true;
+    } else {
+      console.log(Meteor.user().following.indexOf(this._id));
+      console.log("not following");
+      return false;
+    }
   }
 });
 
-//write server-side verification
 Template.followWidget.events ({
-  "click #follow-button": function () {
+  "click .follow-button": function () {
     console.log("follow button clicked");
     console.log(this);
-    Meteor.call('follow', this.username, function(error, result) {
+    console.log(this._id);
+    Meteor.call('follow', this._id, function(error, result) {
       if (error) console.log(error);
     });
-  }
+  },
+  "click .unfollow-button": function () {
+    console.log("unfollow button clicked");
+    console.log(this);
+    console.log(this._id);
+    Meteor.call('unfollow', this._id, function(error, result) {
+      if (error) console.log(error);
+    });
+  },
 });
 
 UI.registerHelper("prettifyDate", function(timestamp) {

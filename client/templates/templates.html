@@ -1,6 +1,6 @@
 <template name="postsArea">
   <div id="post-area" class="js-isotope container-fluid isotope">
-    {{> reactiveBlockGrid cursor=posts template="post" gutter=10}}
+    {{> reactiveBlockGrid cursor=posts template="post" gutter=12}}
     <span class="sizer item col-lg-3 col-md-5 col-sm-5 col-xs-12"></span>
   </div>
 </template>
@@ -175,37 +175,6 @@
   </div>
 </template>
 
-<template name="editProfile">
-  <button type="button" id="user-options-button" class="btn btn-primary" data-toggle="modal" data-target="#user-profile-modal">
-    {{currentUserName}}
-  </button>
-  <div class ="modal fade" id="user-profile-modal" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">X</span>
-          </button>
-          <h4 class="modal-title">edit profile: {{currentUserName}}</h4>
-        </div>
-        <div class="modal-body">
-          <form class="edit-profile">
-            <textarea type="text" id="text" class="form-control profile-field" rows=8 placeholder="Tell us something about you!"></textarea>
-            <button type="submit" class="btn btn-primary" id="save-profile-button">
-              <span class="glyphicon glyphicon-pencil"></span> save
-            </button>
-          </form>
-          <div class="user-posts">
-            {{#each postsByUser}}
-              {{> post}}
-            {{/each}}
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</template>
-
 <template name="accessDenied">
   <div class="access-denied page jumbotron">
     <p>You need to log in to to get here.</p>
@@ -223,8 +192,14 @@
 
 <template name="followWidget">
   {{#if currentUser}}
-    <div id="test-widget" class="col-lg-3 col-md-3">
-      <button id="follow-button">follow</button>
-    </div>
+    {{#if following}}
+      <div class="follow-widget col-lg-3 col-md-3">
+        <button class="unfollow-button btn btn-primary">unfollow</button>
+      </div>
+    {{else}}
+      <div class="follow-widget col-lg-3 col-md-3">
+        <button class="follow-button btn btn-primary">follow</button>
+      </div>
+    {{/if}}
   {{/if}}
 </template>

@@ -75,18 +75,22 @@ Meteor.methods({
 
   follow: function (userToFollow) {
     check(this.userId, String);
-    check(userToFollow, String);
+    check(Meteor.users.findOne({_id: userToFollow})._id, String);
     if (Meteor.user().following.indexOf(userToFollow) === -1){
       Meteor.users.update(this.userId, {$push: { following: userToFollow}});
-    };
+    } else {
+      throw new Meteor.Error("already following");
+    }
   },
 
   unfollow: function (userToUnfollow) {
     check(this.userId, String);
-    check(userToUnfollow, String);
+    check(Meteor.users.findOne({_id: userToUnfollow})._id, String);
     if (Meteor.user().following.indexOf(userToUnfollow) !== -1){
       Meteor.users.update(this.userId, {$pull: { following: userToUnfollow}});
-    };
+    } else {
+      throw new Meteor.Error("you cannot unfollow one whom you do not follow");
+    }
   }
     
 
