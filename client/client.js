@@ -122,12 +122,12 @@ Template.userPage.helpers ({
 
 Template.followWidget.helpers ({
   following: function () {
-    if (Meteor.user().following.indexOf(this._id) !== -1) {
-      console.log(Meteor.user().following.indexOf(this._id));
+    if (Meteor.user().following.indexOf(Template.parentData(1)._id) !== -1) {
+      console.log(Meteor.user().following.indexOf(Template.parentData(1)._id));
       console.log("following");
       return true;
     } else {
-      console.log(Meteor.user().following.indexOf(this._id));
+      console.log(Meteor.user().following.indexOf(Template.parentData(1)._id));
       console.log("not following");
       return false;
     }
