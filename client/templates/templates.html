@@ -87,7 +87,7 @@
 <template name="comment">
   <li class="comment">
     <div class="comment-header">
-      <a href="#{{username}}" data-toggle="modal" data-target=".user-profile" type="button" class="username-link link"><strong>{{username}}</strong></a>
+      <a href="/user/{{username}}" class="username-link link"><strong>{{username}}</strong></a>
       <span class="date">{{prettifyDate createdAt}}</span>
       {{#if isOwner}}
         <div class="post-options">
@@ -183,23 +183,21 @@
 
 <template name="userPage">
   <div id="user-page" class="container-fluid">  
-    {{> followWidget}}
+    {{> profileWidget}}
     {{#each postsByUser}}
       {{> postPage}}
     {{/each}}
   </div>
 </template>
 
-<template name="followWidget">
-  {{#if currentUser}}
-    {{#if following}}
-      <div class="follow-widget col-lg-3 col-md-3">
-        <button class="unfollow-button btn btn-primary">unfollow</button>
-      </div>
-    {{else}}
-      <div class="follow-widget col-lg-3 col-md-3">
-        <button class="follow-button btn btn-primary">follow</button>
-      </div>
+<template name="profileWidget">
+  <div class="user-profile follow-widget col-lg-3 col-md-3 col-sm-3 col-xs-11">
+    {{#if currentUser}}
+      {{#if following}}
+          <button class="unfollow-button btn btn-primary">unfollow</button>
+      {{else}}
+          <button class="follow-button btn btn-primary">follow</button>
+      {{/if}}
     {{/if}}
-  {{/if}}
+  </div>
 </template>

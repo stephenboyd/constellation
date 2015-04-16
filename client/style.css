@@ -202,13 +202,13 @@ li {
   color: black
 }
 
-#test-widget {
+.user-profile {
   height: 100px;
   background: pink;
   float: left;
   margin-top: 10px;
 }
 
-#follow-button {
+.follow-button {
   float: right;
 }

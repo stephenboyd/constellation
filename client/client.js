@@ -120,7 +120,7 @@ Template.userPage.helpers ({
   },
 });
 
-Template.followWidget.helpers ({
+Template.profileWidget.helpers ({
   following: function () {
     if (Meteor.user().following.indexOf(Template.parentData(1)._id) !== -1) {
       console.log(Meteor.user().following.indexOf(Template.parentData(1)._id));
@@ -134,7 +134,7 @@ Template.followWidget.helpers ({
   }
 });
 
-Template.followWidget.events ({
+Template.profileWidget.events ({
   "click .follow-button": function () {
     console.log("follow button clicked");
     console.log(this);
