@@ -96,7 +96,7 @@ Template.body.onRendered( function () {
 
 
 Template.post.onRendered( function () {
-  $("li[data-reactive-block-grid-item-id]").addClass("col-lg-3 col-md-5 col-sm-5 col-xs-11");
+  $("li[data-reactive-block-grid-item-id]").addClass("col-lg-4 col-md-5 col-sm-5 col-xs-11 item-li");
 });
 
 Template.postPage.helpers ({

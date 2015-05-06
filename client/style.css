@@ -65,30 +65,22 @@ li {
 }
 
 .reactiveBlockGrid li {
-  padding-left: 0px;
-  padding-right: 0px;
+  padding-left: 6px;
+  padding-right: 6px;
   padding-top: 0x;
   padding-bottom: 12px;
   float: none;
   margin: auto;
 }
 
-.col-lg-3 {
-}
-
-.col-md-5 {
-  min-width: 31%;
-}
-
-.col-sm-5 {
-  min-width: 31%;
-}
-
-.col-xs-11 {
+.reactiveBlockGrid {
+  padding-left: 0;
+  padding-right: 0;
 }
 
 #post-area {
-  padding: 0px;
+  padding-left: 2%;
+  padding-right: 2%;
 }
 
 .help-block {
