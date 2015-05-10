@@ -51,6 +51,8 @@ h1 {
 
 .pre {
   white-space: pre-wrap;
+  padding-left: 2%;
+  padding-right: 2%;
 }
 
 .filter-options {
@@ -172,6 +174,7 @@ li {
 .post-header {
   color: #FF7272;
   display: inline;
+  margin-left: 2%;
 }
 
 .text {
@@ -201,11 +204,14 @@ li {
 
 .user-profile {
   height: 100px;
-  background: pink;
   float: left;
   margin-top: 10px;
 }
 
 .follow-button {
+  float: right;
+}
+
+.unfollow-button {
   float: right;
 }
