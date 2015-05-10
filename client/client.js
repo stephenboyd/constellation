@@ -96,7 +96,7 @@ Template.body.onRendered( function () {
 
 
 Template.post.onRendered( function () {
-  $("li[data-reactive-block-grid-item-id]").addClass("col-lg-4 col-md-5 col-sm-5 col-xs-11 item-li");
+  $("li[data-reactive-block-grid-item-id]").addClass("col-lg-4 col-md-6 col-sm-6 col-xs-12 item-li");
 });
 
 Template.postPage.helpers ({
@@ -118,6 +118,17 @@ Template.userPage.helpers ({
   postsByUser: function () {
     return Posts.find({owner: this._id}, {sort: {createdAt: -1}});
   },
+});
+
+Template.following.helpers ({
+  followedPosts: function () {
+    var followedUsers = Meteor.user().following;
+    var postsByFollowedUsers = Posts.find(
+      {owner: { $in: followedUsers }},
+      {sort: {createdAt: -1}}
+    );
+    return postsByFollowedUsers;
+    }
 });
 
 Template.profileWidget.helpers ({

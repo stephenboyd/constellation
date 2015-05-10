@@ -1,8 +1,28 @@
 <template name="postsArea">
   <div id="post-area" class="container-fluid">
+    {{> filterOptions}}
     {{> reactiveBlockGrid cursor=posts template="post" gutter=0}}
   </div>
 </template>
+
+<template name="following">
+  <div id="post-area" class="container-fluid">
+    {{> filterOptions}}
+    {{> reactiveBlockGrid cursor=followedPosts template="post" gutter=0}}
+  </div>
+</template>
+
+
+<template name="filterOptions">
+  {{#if currentUser}}
+    <div class="filter-options">
+      <p>
+        show: <a href="/following">users you follow</a> / <a href="/">everybody</a>
+      </p>
+    </div>
+  {{/if}}
+</template>
+  
 
 <template name="header">
   <nav class="navbar navbar-default navbar-static-top" role="navigation">

@@ -53,6 +53,11 @@ h1 {
   white-space: pre-wrap;
 }
 
+.filter-options {
+  padding-left: 6px;
+  padding-right: 6px;
+}
+
 li {
   list-style: none;
 }
