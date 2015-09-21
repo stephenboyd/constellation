@@ -59,6 +59,7 @@ Template.editPost.events({
   "submit .update-post": function (event) {
     event.preventDefault();
     var text = event.target.text.value;
+    var thisPostId = Session.get("editPostId");
     Meteor.call("updatePost", thisPostId, text);
     event.target.text.value = "";
     $('.updateTextArea').val("");
@@ -79,6 +80,7 @@ Template.postHeader.events({
     Router.go('/');
   },
   "click .edit": function () {
+    Session.set("editPostId", this._id);
     $('.updateTextArea').val(this.text);
     $('.updateTextArea').focus();
   },
