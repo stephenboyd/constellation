@@ -63,7 +63,7 @@ Template.editPost.events({
     Meteor.call("updatePost", thisPostId, text);
     event.target.text.value = "";
     $('.updateTextArea').val("");
-    $('.modal-edit-modal-sm').modal('hide');
+    $('.modal-edit-modal-sm').modal('hide'); // whatever
     return false;
   },
 });

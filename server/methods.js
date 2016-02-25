@@ -65,7 +65,7 @@ Meteor.methods({
     if (post.owner !== Meteor.userId()) {
       throw new Meteor.Error("not-authorized");
     } else {
-    Posts.update(postId, {$set: {"text": newText} });
+      Posts.update(postId, {$set: {"text": newText} });
     }
   },
 
