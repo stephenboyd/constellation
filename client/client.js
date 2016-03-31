@@ -1,6 +1,19 @@
 Meteor.subscribe("posts");
 Meteor.subscribe("allUsers");
 
+Template.layout.onCreated(function () {
+  var template = this;
+  template.autorun(function () {
+    template.subscribe('posts');
+  });
+});
+
+Template.layout.helpers({
+  appReady: function () {
+    return Template.instance().subscriptionsReady();
+  }
+});
+
 Template.postsArea.helpers({
   posts: function () {
     return Posts.find({}, {sort: {createdAt: -1}});
@@ -101,7 +114,27 @@ Template.post.onRendered( function () {
   $("li[data-reactive-block-grid-item-id]").addClass("col-lg-4 col-md-6 col-sm-6 col-xs-12 item-li");
 });
 
+
+Template.postPage.onCreated(function () {
+  var self = this;
+  var postId = Router.current().params._id;
+  self.autorun(function() {
+    console.log(postId);
+  });
+});
+
+
 Template.postPage.helpers ({
+  ready: function () {
+    return Template.instance().subscriptionsReady();
+  },
+  postPageData: function () {
+    if (Router.current().params._id === undefined) {
+      return Posts.findOne({_id: this._id});
+    } else {
+      return Posts.findOne({_id: Router.current().params._id});
+    }
+  },
   isOwner: function () {
     return this.owner === Meteor.userId();
   },
@@ -117,7 +150,23 @@ Template.postPage.helpers ({
 });
 
 Template.userPage.helpers ({
+  ready: function () {
+    console.log("userpage ready");
+    return Template.instance().subscriptionsReady();
+  },
+  userPageData: function () {
+    console.log("userpage data loaded");
+    console.log("params: " + Router.current().params);
+    console.log("username: " + Meteor.users.findOne({_id: Router.current().params.username}));
+    var user = Meteor.users.findOne(
+      { username: Router.current().params.username},
+      { username: 1, _id: 1, following: 1 }
+    );
+    console.log(user);
+    return user;
+  },
   postsByUser: function () {
+    console.log("posts by user...");
     return Posts.find({owner: this._id}, {sort: {createdAt: -1}});
   },
 });
@@ -135,12 +184,12 @@ Template.following.helpers ({
 
 Template.profileWidget.helpers ({
   following: function () {
-    if (Meteor.user().following.indexOf(Template.parentData(1)._id) !== -1) {
-      console.log(Meteor.user().following.indexOf(Template.parentData(1)._id));
+    if (Meteor.user().following.indexOf(Template.parentData(0)._id) !== -1) {
+      console.log(Meteor.user().following.indexOf(Template.parentData(0)._id));
       console.log("following");
       return true;
     } else {
-      console.log(Meteor.user().following.indexOf(Template.parentData(1)._id));
+      console.log(Meteor.user().following.indexOf(Template.parentData(0)._id));
       console.log("not following");
       return false;
     }

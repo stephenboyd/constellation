@@ -4,7 +4,6 @@
 # 'meteor add' and 'meteor remove' will edit this file for you,
 # but you can also edit it by hand.
 
-meteor-platform
 accounts-password
 twbs:bootstrap
 momentjs:moment
@@ -19,3 +18,17 @@ msavin:mongol
 iron:router
 isotope:isotope
 smeevil:reactive-block-grid
+meteor-base
+mobile-experience
+mongo
+blaze-html-templates
+session
+tracker
+logging
+reload
+random
+ejson
+spacebars
+check
+standard-minifier-css
+standard-minifier-js

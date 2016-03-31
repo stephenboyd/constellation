@@ -64,24 +64,30 @@
 </template>
 
 <template name="postPage">
-  <div class="post post-page page item col-lg-6 col-md-6 col-sm-12 col-xs-12">
-    {{> postHeader}}
-    <br>
-    <div class="post-body">
-      <span class="text pre">{{text}}</span>
-    </div>
-    <br>
-    {{subscribeToComments}}
-    <ul class="comments">
-      {{#each comments}}
-        {{> comment}}
-      {{/each}}
-    </ul>
-    <br>
-    {{#if currentUser}}
-      {{> newCommentForm}}
-    {{/if}}
-  </div>
+  {{#if ready}}
+    {{#with postPageData}}
+      <div class="post post-page page item col-lg-6 col-md-6 col-sm-12 col-xs-12">
+        {{> postHeader}}
+        <br>
+        <div class="post-body">
+          <span class="text pre">{{text}}</span>
+        </div>
+        <br>
+        {{subscribeToComments}}
+        <ul class="comments">
+          {{#each comments}}
+            {{> comment}}
+          {{/each}}
+        </ul>
+        <br>
+        {{#if currentUser}}
+          {{> newCommentForm}}
+        {{/if}}
+      </div>
+    {{/with}}
+  {{else}}
+    {{> loading}}
+  {{/if}}
 </template>
 
 <template name="postHeader">
@@ -201,12 +207,18 @@
 </template>
 
 <template name="userPage">
-  <div id="user-page" class="container-fluid">  
-    {{> profileWidget}}
-    {{#each postsByUser}}
-      {{> postPage}}
-    {{/each}}
-  </div>
+  {{#if ready}}
+    {{#with userPageData}}
+      <div id="user-page" class="container-fluid">  
+        {{> profileWidget}}
+        {{#each postsByUser}}
+          {{> postPage}}
+        {{/each}}
+      </div>
+    {{/with}}
+  {{else}}
+    {{> loading}}
+  {{/if}}
 </template>
 
 <template name="profileWidget">
