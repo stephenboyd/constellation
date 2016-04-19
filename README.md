@@ -1,4 +1,4 @@
 # constellation
-A simple social network platform being built on Meteor.
+A simple social network platform built on Meteor.
 
-See the work in progress at [constellationdemo.meteor.com](http://constellationdemo.meteor.com)
+Check it out at [constellationdemo.xyz](http://constellationdemo.xyz).

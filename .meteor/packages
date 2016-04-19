@@ -32,3 +32,4 @@ spacebars
 check
 standard-minifier-css
 standard-minifier-js
+kadira:flow-router

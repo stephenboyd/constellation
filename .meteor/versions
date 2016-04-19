@@ -53,6 +53,7 @@ iron:router@1.0.12
 iron:url@1.0.11
 isotope:isotope@2.1.0_1
 jquery@1.11.6
+kadira:flow-router@2.11.0
 lai:collection-extensions@0.2.1_1
 launch-screen@1.0.8
 less@2.5.6
