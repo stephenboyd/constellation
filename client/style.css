@@ -3,7 +3,7 @@ body {
 }
 
 .navbar {
-  padding-left: 20px;
+  padding-left: 10px;
   background: white;
   padding-bottom: 5px;
   border-bottom: 0px;
@@ -28,7 +28,8 @@ body {
 
 .navbar-brand {
   padding-top: 0px;
-  padding-left: 50px;
+  padding-left: 40px;
+  padding-right: 0px;
 }
 
 .navbar-brand img {
@@ -42,6 +43,7 @@ h1 {
 
 #wordmark {
   margin-top: 10px;
+  font-weight: 300;
 }
 
 
