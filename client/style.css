@@ -37,6 +37,12 @@ body {
   padding-left: 40px;
 }
 
+@media (min-width: 500px) {
+  .navbar-brand {
+    margin-left: 40px !important;
+  }
+}
+
 h1 {
   color: grey;
 }
